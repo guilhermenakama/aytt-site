@@ -5,7 +5,7 @@
   --cinza-escuro: #1a1a1a;
   --branco: #ffffff;
   --font: 'Poppins', sans-serif;
-  --base-font-size: 20px; /* aumentei para 20px */
+  --base-font-size: 30px; /* aumentei para 20px */
   --transition: 0.3s ease;
 }
 :root {
@@ -14,7 +14,7 @@
   --cinza-escuro: #1a1a1a;
   --branco: #ffffff;
   --font: 'Poppins', sans-serif;
-  --base-font-size: 18px;
+  --base-font-size: 30px;
   --transition: 0.3s ease;
 }
 /* ========== GLOBAL ========== */
