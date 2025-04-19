@@ -1,13 +1,10 @@
 /* ========== VARIÁVEIS ========== */
-:root {
-  --azul-metalico: #00aaff;
-  --preto: #0a0a0a;
-  --cinza-escuro: #1a1a1a;
-  --branco: #ffffff;
-  --font: 'Poppins', sans-serif;
-  --base-font-size: 18px;
-  --transition: 0.3s ease;
-  --max-width: 1200px;
+/* ========== CONTAINERS ========== */
+.container {
+  width: 80%; /* agora usa 80% da largura */
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* ========== RESET / GLOBAL ========== */
