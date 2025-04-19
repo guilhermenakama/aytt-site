@@ -5,6 +5,15 @@
   --cinza-escuro: #1a1a1a;
   --branco: #ffffff;
   --font: 'Poppins', sans-serif;
+  --base-font-size: 20px; /* aumentei para 20px */
+  --transition: 0.3s ease;
+}
+:root {
+  --azul-metalico: #00aaff;
+  --preto: #0a0a0a;
+  --cinza-escuro: #1a1a1a;
+  --branco: #ffffff;
+  --font: 'Poppins', sans-serif;
   --base-font-size: 18px;
   --transition: 0.3s ease;
 }
