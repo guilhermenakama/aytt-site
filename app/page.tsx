@@ -562,13 +562,18 @@ export default function Home() {
             <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
               Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 sm:gap-4">
-              {companyLogos.map((logo, index) => (
-                <div key={index} className="bg-white rounded-lg p-2 sm:p-4 text-center border border-white/10 shadow-md h-16 sm:h-20 md:h-24 flex items-center justify-center">
-                  <img
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              {companyLogos.map((logo) => (
+                <div
+                  key={logo.name}
+                  className="bg-white rounded-lg p-4 flex items-center justify-center h-28"
+                >
+                  <Image
                     src={`/logos/${logo.file}`}
                     alt={logo.name}
-                    className="object-contain max-h-8 sm:max-h-10 md:max-h-12 w-auto"
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-16"
                   />
                 </div>
               ))}
