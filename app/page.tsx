@@ -222,6 +222,7 @@ export default function Home() {
     { name: "EVVAS", file: "evvas.png" },
     { name: "Life Nutri", file: "life-nutri.png" },
     { name: "ISCAL", file: "iscal.png" },
+    { name: "Cirvale", file: "cirvale.png" },
   ];
 
   const solutionDifferentials = [
