@@ -331,8 +331,12 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-lg sm:text-xl">AYTT</span>
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden">
+                <img
+                  src="/aytt.png"
+                  alt="AYTT Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline">Assemble Your Tech Team</span>
             </div>
@@ -538,10 +542,12 @@ export default function Home() {
                 className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg bg-gray-300">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
-                      {founder.name.split(' ').map(n => n[0]).join('')}
-                    </div>
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg">
+                    <img
+                      src={founder.image}
+                      alt={`Foto de ${founder.name}`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold mb-2">{founder.name}</h3>
                   <p className="text-blue-400 font-medium text-sm sm:text-base">{founder.role}</p>
@@ -552,16 +558,18 @@ export default function Home() {
           </div>
 
           <div className="bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 animate-fadeInUp delay-800">
-            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">Experiência</h3>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center">Experiência dos Fundadores</h3>
             <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
               Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 sm:gap-4">
               {companyLogos.map((logo, index) => (
                 <div key={index} className="bg-white rounded-lg p-2 sm:p-4 text-center border border-white/10 shadow-md h-16 sm:h-20 md:h-24 flex items-center justify-center">
-                  <div className="text-gray-800 text-xs sm:text-sm font-bold text-center">
-                    {logo.name}
-                  </div>
+                  <img
+                    src={`/logos/${logo.file}`}
+                    alt={logo.name}
+                    className="object-contain max-h-8 sm:max-h-10 md:max-h-12 w-auto"
+                  />
                 </div>
               ))}
             </div>
