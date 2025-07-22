@@ -408,21 +408,21 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-16 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-black via-gray-900/20 to-black">
+      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-28 md:pt-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-black via-gray-900/20 to-black">
         <div className="w-full max-w-6xl mx-auto relative z-10">
           <div className="text-center">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-6 sm:mb-8">
               Cansado de Projetos de IA que{" "}
               <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
                 Não Saem do Papel?
               </span>
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 px-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 px-4">
               <strong>Se você já investiu meses em um projeto de IA e...</strong>
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10 max-w-5xl mx-auto">
               {painPoints.map((point, index) => (
                 <div
                   key={index}
@@ -438,7 +438,7 @@ export default function Home() {
               ))}
             </div>
 
-            <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-red-400 px-4">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4">
               Essas situações te soam familiares?
             </p>
 
@@ -556,8 +556,8 @@ export default function Home() {
             <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
               Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-              {companyLogos.slice(0, 12).map((logo, index) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 sm:gap-4">
+              {companyLogos.map((logo, index) => (
                 <div key={index} className="bg-white rounded-lg p-2 sm:p-4 text-center border border-white/10 shadow-md h-16 sm:h-20 md:h-24 flex items-center justify-center">
                   <div className="text-gray-800 text-xs sm:text-sm font-bold text-center">
                     {logo.name}
