@@ -147,19 +147,19 @@ export default function Home() {
       name: "Guilherme Nakama",
       role: "Sócio Fundador",
       description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
-      image: "/public/guilherme-profile-pic.png"
+      image: "/guilherme-profile-pic.png"
     },
     {
       name: "Rodolfo Spigai",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
-      image: "/public/rodolfo-profile-pic.png"
+      image: "/rodolfo-profile-pic.png"
     },
     {
       name: "Ronaldo Sirosse",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
-      image: "/public/ronaldo-profile-pic.png"
+      image: "/ronaldo-profile-pic.png"
     }
   ]
 
