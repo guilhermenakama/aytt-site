@@ -327,7 +327,7 @@ export default function Home() {
 
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "py-6"}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md py-6" : "py-10"}`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center">
@@ -335,9 +335,9 @@ export default function Home() {
               <Image
                 src="/logos/aytt.png"
                 alt="Logo AYTT"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
+                width={64}
+                height={64}
+                className="w-16 h-16 object-contain"
               />
               <span className="text-gray-400 text-sm hidden sm:inline">Assemble Your Tech Team</span>
             </div>
