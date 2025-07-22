@@ -61,7 +61,6 @@ import {
   GraduationCap,
   Repeat,
   Gauge,
-
   Coffee,
   Smile
 } from "lucide-react"
@@ -73,6 +72,8 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [showVideo, setShowVideo] = useState(false)
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [scrollY, setScrollY] = useState(0)
 
   const heroRef = useRef<HTMLElement>(null)
   const urgencyRef = useRef<HTMLElement>(null)
@@ -87,9 +88,15 @@ export default function Home() {
   const readyRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
 
+  // Intersection Observer para animações de scroll
+  const [visibleElements, setVisibleElements] = useState(new Set())
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      const newScrollY = window.scrollY
+      setScrollY(newScrollY)
+      
+      if (newScrollY > 50) {
         setIsScrolled(true)
       } else {
         setIsScrolled(false)
@@ -121,8 +128,37 @@ export default function Home() {
       }
     }
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("mousemove", handleMouseMove)
+
+    // Intersection Observer para animações
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.id]))
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    // Observar todos os elementos com classe 'animate-on-scroll'
+    const animatedElements = document.querySelectorAll('.animate-on-scroll')
+    animatedElements.forEach((el, index) => {
+      el.id = `animated-${index}`
+      observer.observe(el)
+    })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("mousemove", handleMouseMove)
+      observer.disconnect()
+    }
   }, [])
 
   const painPoints = [
@@ -321,24 +357,58 @@ export default function Home() {
 
   return (
     <div className="relative bg-black text-white overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black pointer-events-none"></div>
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        {/* Gradient Background with Parallax */}
+        <div 
+          className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black pointer-events-none"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
+        ></div>
+        
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 20}s`,
+                animationDuration: `${20 + Math.random() * 40}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Mouse Follower */}
+        <div
+          className="absolute w-96 h-96 rounded-full bg-blue-500/5 pointer-events-none transition-all duration-1000 ease-out"
+          style={{
+            left: mousePosition.x - 192,
+            top: mousePosition.y - 192,
+            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
+          }}
+        />
+      </div>
 
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md py-2 sm:py-4" : "py-4 sm:py-6"}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "bg-black/80 backdrop-blur-md py-2 sm:py-4 shadow-2xl" : "py-4 sm:py-6"}`}
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden transform hover:scale-110 transition-transform duration-300">
                 <img
                   src="/aytt.png"
                   alt="AYTT Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline">Assemble Your Tech Team</span>
+              <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline animate-pulse">Assemble Your Tech Team</span>
             </div>
           </div>
 
@@ -347,7 +417,7 @@ export default function Home() {
               <Link
                 key={item}
                 href={`#${item}`}
-                className={`text-sm uppercase tracking-wider font-medium transition-colors hover:text-blue-400 ${activeSection === item ? "text-blue-400" : "text-gray-300"}`}
+                className={`text-sm uppercase tracking-wider font-medium transition-all duration-300 hover:text-blue-400 hover:scale-110 ${activeSection === item ? "text-blue-400 scale-110" : "text-gray-300"}`}
               >
                 {item === "home" ? "Início" : 
                  item === "urgency" ? "Urgência" :
@@ -365,27 +435,34 @@ export default function Home() {
             <Link
               href="https://wa.me/5543999108255"
               target="_blank"
-              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 text-sm"
+              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 text-sm transform hover:scale-105 hover:-translate-y-1"
             >
               WhatsApp
             </Link>
           </div>
 
-          <button className="lg:hidden text-white focus:outline-none" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button 
+            className="lg:hidden text-white focus:outline-none transform hover:scale-110 transition-transform duration-300" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? 
+              <X className="h-6 w-6 animate-spin" /> : 
+              <Menu className="h-6 w-6 hover:animate-pulse" />
+            }
           </button>
         </div>
       </header>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-30 lg:hidden bg-black/95 backdrop-blur-md pt-20 sm:pt-24 transition-transform duration-300 ease-in-out">
+        <div className="fixed inset-0 z-30 lg:hidden bg-black/95 backdrop-blur-md pt-20 sm:pt-24 transition-all duration-500 ease-out animate-slideInLeft">
           <nav className="container mx-auto px-4 sm:px-6 flex flex-col space-y-6 sm:space-y-8 py-6 sm:py-8">
-            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item) => (
+            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item, index) => (
               <Link
                 key={item}
                 href={`#${item}`}
-                className="text-lg sm:text-xl font-medium border-b border-gray-800 pb-3 sm:pb-4 flex justify-between items-center"
+                className="text-lg sm:text-xl font-medium border-b border-gray-800 pb-3 sm:pb-4 flex justify-between items-center transform hover:translate-x-4 transition-all duration-300"
+                style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>{item === "home" ? "Início" : 
@@ -396,13 +473,13 @@ export default function Home() {
                        item === "team" ? "Time" :
                        item === "challenge" ? "Desafio" :
                        item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
-                <ChevronRight className="h-5 w-5 text-blue-400" />
+                <ChevronRight className="h-5 w-5 text-blue-400 transform hover:translate-x-2 transition-transform duration-300" />
               </Link>
             ))}
             <Link
               href="https://wa.me/5543999108255"
               target="_blank"
-              className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-full font-medium text-center mt-4"
+              className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-full font-medium text-center mt-4 transform hover:scale-105 transition-all duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               WhatsApp
@@ -412,17 +489,17 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-28 md:pt-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-black via-gray-900/20 to-black">
+      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-28 md:pt-24 px-4 sm:px-6 overflow-hidden">
         <div className="w-full max-w-6xl mx-auto relative z-10">
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-6 sm:mb-8">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-6 sm:mb-8 animate-slideInUp">
               Cansado de Projetos de IA que{" "}
-              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text animate-pulse">
                 Não Saem do Papel?
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 px-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 px-4 animate-slideInUp" style={{ animationDelay: '0.3s' }}>
               <strong>Se você já investiu meses em um projeto de IA e...</strong>
             </p>
 
@@ -430,43 +507,49 @@ export default function Home() {
               {painPoints.map((point, index) => (
                 <div
                   key={index}
-                  className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-red-500/20"
+                  className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-red-500/20 transform hover:scale-105 hover:-translate-y-2 hover:bg-red-900/20 transition-all duration-300 animate-slideInUp group cursor-pointer"
+                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                 >
                   <div className="flex items-start">
-                    <div className="text-red-400 mr-3 mt-1 flex-shrink-0">
+                    <div className="text-red-400 mr-3 mt-1 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                       {point.icon}
                     </div>
-                    <p className="text-gray-300 text-sm sm:text-base">{point.text}</p>
+                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{point.text}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4 animate-slideInUp animate-pulse" style={{ animationDelay: '1.2s' }}>
               Essas situações te soam familiares?
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 animate-slideInUp" style={{ animationDelay: '1.5s' }}>
               <Link
                 href="https://wa.me/5543999108255?text=Olá! Sou diretor/dono de empresa e gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
                 target="_blank"
-                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2 group"
               >
                 💬 Quero Reduzir Custos com IA
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute top-40 right-20 w-12 h-12 bg-purple-500/10 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-40 left-20 w-16 h-16 bg-green-500/10 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
       </section>
 
       {/* Urgency Section */}
       <section id="urgency" ref={urgencyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-blue-900/10 to-gray-900/30">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               O Mercado Está{" "}
-              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text animate-gradient-x">
                 Mudando Rápido
               </span>
             </h2>
@@ -479,20 +562,21 @@ export default function Home() {
             {urgencyIndicators.map((indicator, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 text-center"
+                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 text-center transform hover:scale-105 hover:-translate-y-4 transition-all duration-500 animate-on-scroll group cursor-pointer"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 sm:p-4 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 sm:p-4 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                   {indicator.icon}
                 </div>
-                <p className="text-gray-300 text-sm sm:text-base">{indicator.text}</p>
+                <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{indicator.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8">
+          <div className="text-center bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
               Então é o momento de você conhecer a{" "}
-              <span className="text-blue-400">AYTT</span>
+              <span className="text-blue-400 animate-pulse">AYTT</span>
             </h3>
           </div>
         </div>
@@ -501,20 +585,20 @@ export default function Home() {
       {/* Philosophy Section */}
       <section id="philosophy" ref={philosophyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-gray-900/30 via-gray-900/20 to-black">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-12 italic px-4">
+          <div className="max-w-4xl mx-auto text-center animate-on-scroll">
+            <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-12 italic px-4 transform hover:scale-105 transition-all duration-500">
               "A AYTT nasceu de uma convicção simples: a tecnologia deveria{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 simplificar, não complicar.
               </span>"
             </blockquote>
 
-            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20">
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6">
+            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
                 Não vendemos soluções mágicas. Oferecemos pessoas qualificadas, processos claros e comunicação honesta. 
                 Porque inovação de verdade acontece quando há confiança mútua e expectativas alinhadas.
               </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
                 Enquanto o mercado fala em revolução, nós falamos em evolução. Construímos mudanças sustentáveis, 
                 respeitando o ritmo e a cultura de cada empresa.
               </p>
@@ -526,10 +610,10 @@ export default function Home() {
       {/* Founders Section */}
       <section id="founders" ref={foundersRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Founders{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Multidisciplinares
               </span>
             </h2>
@@ -539,41 +623,43 @@ export default function Home() {
             {founders.map((founder, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10"
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                     <img
                       src={founder.image}
                       alt={`Foto de ${founder.name}`}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">{founder.name}</h3>
-                  <p className="text-blue-400 font-medium text-sm sm:text-base">{founder.role}</p>
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors duration-300">{founder.name}</h3>
+                  <p className="text-blue-400 font-medium text-sm sm:text-base animate-pulse">{founder.role}</p>
                 </div>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{founder.description}</p>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">{founder.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 animate-fadeInUp delay-800">
+          <div className="bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 animate-on-scroll transform hover:scale-105 transition-all duration-500">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center">Experiência dos Fundadores</h3>
             <p className="text-center text-gray-300 mb-6 sm:mb-8 text-sm sm:text-base">
               Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {companyLogos.map((logo) => (
+              {companyLogos.map((logo, index) => (
                 <div
                   key={logo.name}
-                  className="bg-white rounded-lg p-4 flex items-center justify-center h-28"
+                  className="bg-white rounded-lg p-4 flex items-center justify-center h-28 transform hover:scale-110 hover:-translate-y-2 hover:rotate-3 transition-all duration-300 group cursor-pointer"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <Image
                     src={`/logos/${logo.file}`}
                     alt={logo.name}
                     width={120}
                     height={60}
-                    className="object-contain max-h-16"
+                    className="object-contain max-h-16 group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
               ))}
@@ -585,10 +671,10 @@ export default function Home() {
       {/* Solutions Section */}
       <section id="solutions" ref={solutionsRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Como Entregamos{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Soluções
               </span>
             </h2>
@@ -599,19 +685,19 @@ export default function Home() {
             {solutionDifferentials.map((differential, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-blue-500/20 text-center animate-fadeInUp"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-blue-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                   {differential.icon}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm">{differential.text}</p>
+                <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{differential.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-fadeInUp delay-800">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400">
+          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400 animate-pulse">
               Vantagem Competitiva
             </h3>
             <p className="text-lg sm:text-xl text-gray-300">
@@ -624,10 +710,10 @@ export default function Home() {
       {/* Team Section */}
       <section id="team" ref={teamRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Time{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Completo
               </span>
             </h2>
@@ -637,24 +723,24 @@ export default function Home() {
             {teamRoles.map((role, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 group"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     {role.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2">{role.title}</h3>
-                    <p className="text-gray-400 mb-4 text-sm sm:text-base">{role.description}</p>
+                    <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors duration-300">{role.title}</h3>
+                    <p className="text-gray-400 mb-4 text-sm sm:text-base group-hover:text-gray-300 transition-colors duration-300">{role.description}</p>
                   </div>
                 </div>
                 
                 <div className="space-y-3">
                   {role.responsibilities.map((responsibility, i) => (
-                    <div key={i} className="flex items-start">
-                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                      <p className="text-gray-300 text-xs sm:text-sm">{responsibility}</p>
+                    <div key={i} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
+                      <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{responsibility}</p>
                     </div>
                   ))}
                 </div>
@@ -667,10 +753,10 @@ export default function Home() {
       {/* Challenge Section */}
       <section id="challenge" ref={challengeRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               O Grande Desafio dos{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Projetos de IA
               </span>
             </h2>
@@ -680,15 +766,15 @@ export default function Home() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 mb-8 sm:mb-12 animate-fadeInUp">
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
+            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 mb-8 sm:mb-12 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
                 Eles envolvem elementos com output probabilístico (IA) e maior incerteza técnica. Ao projetar uma arquitetura 
                 de solução com IA, é fundamental compreender as limitações e potencialidades para garantir desempenho, 
                 escalabilidade e viabilidade financeira.
               </p>
               
-              <div className="bg-red-900/20 rounded-xl p-4 sm:p-6 border border-red-500/20">
-                <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-3 sm:mb-4">Problema Comum</h3>
+              <div className="bg-red-900/20 rounded-xl p-4 sm:p-6 border border-red-500/20 transform hover:scale-105 transition-all duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-3 sm:mb-4 animate-pulse">Problema Comum</h3>
                 <p className="text-gray-300 text-sm sm:text-base">
                   Tratar IA como um "componente mágico que resolve tudo" gera frustração, altos custos de processamento 
                   e resultados insatisfatórios.
@@ -702,19 +788,19 @@ export default function Home() {
       {/* Architecture Section */}
       <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Arquitetura Simples vs{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Robusta
               </span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20 animate-fadeInLeft">
+            <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
-                <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3" />
+                <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3 transform group-hover:rotate-12 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-red-400">Arquitetura Simples</h3>
               </div>
               
@@ -726,17 +812,17 @@ export default function Home() {
                   "Difícil manutenção e escalabilidade",
                   "Baixa precisão em tarefas específicas"
                 ].map((item, index) => (
-                  <div key={index} className="flex items-start">
+                  <div key={index} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
                     <XCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-300 text-sm sm:text-base">{item}</p>
+                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-green-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-green-500/20 animate-fadeInRight">
+            <div className="bg-green-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-green-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
-                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mr-3" />
+                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mr-3 transform group-hover:rotate-12 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-green-400">Arquitetura Robusta (AYTT)</h3>
               </div>
               
@@ -748,9 +834,9 @@ export default function Home() {
                   "Fácil manutenção e escalabilidade",
                   "Maior precisão em tarefas específicas"
                 ].map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-300 text-sm sm:text-base">{item}</p>
+                  <div key={index} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                    <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
+                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{item}</p>
                   </div>
                 ))}
               </div>
@@ -762,10 +848,10 @@ export default function Home() {
       {/* Practical Solutions Section */}
       <section id="practical" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Soluções Práticas com{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 IA
               </span>
             </h2>
@@ -775,14 +861,14 @@ export default function Home() {
             {practicalSolutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 animate-fadeInUp"
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     {solution.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{solution.title}</h3>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{solution.title}</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
@@ -790,9 +876,9 @@ export default function Home() {
                     <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Funcionalidades:</h4>
                     <div className="space-y-2 sm:space-y-3">
                       {solution.features.map((feature, i) => (
-                        <div key={i} className="flex items-start">
-                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                          <p className="text-gray-300 text-xs sm:text-sm">{feature}</p>
+                        <div key={i} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
+                          <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{feature}</p>
                         </div>
                       ))}
                     </div>
@@ -801,14 +887,14 @@ export default function Home() {
                   {solution.example && (
                     <div>
                       <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Exemplo de Conversa:</h4>
-                      <div className="bg-black/40 rounded-xl p-3 sm:p-4 space-y-2 sm:space-y-3">
-                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm">
+                      <div className="bg-black/40 rounded-xl p-3 sm:p-4 space-y-2 sm:space-y-3 transform hover:scale-105 transition-transform duration-300">
+                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
                           <strong>Bot:</strong> {solution.example.bot}
                         </div>
-                        <div className="bg-gray-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm">
+                        <div className="bg-gray-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
                           <strong>Usuário:</strong> {solution.example.user}
                         </div>
-                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm">
+                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
                           <strong>Bot:</strong> {solution.example.response}
                         </div>
                       </div>
@@ -824,10 +910,10 @@ export default function Home() {
       {/* Additional Services Section */}
       <section id="additional" ref={additionalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Serviços{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Adicionais
               </span>
             </h2>
@@ -840,21 +926,21 @@ export default function Home() {
             {additionalServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
-                style={{ animationDelay: `${0.3 * index}s` }}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
+                style={{ animationDelay: `${index * 0.3}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     {service.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{service.title}</h3>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{service.title}</h3>
                 </div>
                 
                 <div className="space-y-3 sm:space-y-4">
                   {service.services.map((item, i) => (
-                    <div key={i} className="flex items-start">
-                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
-                      <p className="text-gray-300 text-sm sm:text-base">{item}</p>
+                    <div key={i} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
+                      <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -867,10 +953,10 @@ export default function Home() {
       {/* Ready Section */}
       <section id="ready" ref={readyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Você Está Pronto{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
                 Se...
               </span>
             </h2>
@@ -880,19 +966,19 @@ export default function Home() {
             {readyChecklist.map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-green-500/20 text-center animate-fadeInUp"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-green-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                   {item.icon}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm">{item.text}</p>
+                <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{item.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-fadeInUp delay-800">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400">
+          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400 animate-pulse">
               A boa notícia?
             </h3>
             <p className="text-lg sm:text-xl text-gray-300">
@@ -905,10 +991,10 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" ref={contactRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-blue-900/40 to-black/90">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
               Pronto para Automatizar com IA{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Sem Dor de Cabeça?</span>
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">Sem Dor de Cabeça?</span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg px-4">
               Agende uma reunião conosco e implemente IA na prática, com um time que fala a língua do seu negócio
@@ -916,7 +1002,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 animate-fadeInLeft">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
               <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Entre em Contato</h3>
 
               <div className="space-y-4 sm:space-y-6">
@@ -927,7 +1013,7 @@ export default function Home() {
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
                       placeholder="Seu nome"
                     />
                   </div>
@@ -937,7 +1023,7 @@ export default function Home() {
                     </label>
                     <input
                       type="email"
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
                       placeholder="seu@email.com"
                     />
                   </div>
@@ -949,7 +1035,7 @@ export default function Home() {
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
                     placeholder="Nome da sua empresa"
                   />
                 </div>
@@ -960,7 +1046,7 @@ export default function Home() {
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base resize-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base resize-none transform focus:scale-105 transition-all duration-300"
                     placeholder="Conte-nos sobre seus processos que precisam ser automatizados..."
                   ></textarea>
                 </div>
@@ -968,15 +1054,15 @@ export default function Home() {
                 <Link
                   href="https://wa.me/5543999108255?text=Olá! Gostaria de conversar sobre implementação de IA na minha empresa."
                   target="_blank"
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-2 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base flex items-center justify-center"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base flex items-center justify-center transform hover:scale-105 hover:-translate-y-1"
                 >
                   Enviar via WhatsApp
                 </Link>
               </div>
             </div>
 
-            <div className="animate-fadeInRight space-y-6 sm:space-y-8">
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10">
+            <div className="animate-on-scroll space-y-6 sm:space-y-8">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Fale Conosco</h3>
 
                 <div className="space-y-4 sm:space-y-6">
@@ -985,7 +1071,7 @@ export default function Home() {
                     <a
                       href="https://wa.me/5543999108255"
                       target="_blank"
-                      className="text-base sm:text-lg font-medium hover:text-blue-400 transition-colors"
+                      className="text-base sm:text-lg font-medium hover:text-blue-400 transition-all duration-300 transform hover:scale-105 inline-block"
                     >
                       (43) 99910-8255
                     </a>
@@ -996,7 +1082,7 @@ export default function Home() {
                     <a 
                       href="https://instagram.com/aytt.tech" 
                       target="_blank"
-                      className="text-base sm:text-lg font-medium hover:text-blue-400 transition-colors"
+                      className="text-base sm:text-lg font-medium hover:text-blue-400 transition-all duration-300 transform hover:scale-105 inline-block"
                     >
                       @aytt.tech
                     </a>
@@ -1004,7 +1090,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Você Está Pronto Quando:</h3>
 
                 <div className="space-y-3 sm:space-y-4">
@@ -1015,9 +1101,9 @@ export default function Home() {
                     "Se frustrou com consultorias que prometem mas não entregam",
                     "Quer resultado real ao invés de relatórios bonitos"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-1 flex-shrink-0" />
-                      <p className="text-gray-400 text-sm sm:text-base">{item}</p>
+                    <div key={index} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-1 flex-shrink-0 animate-pulse" />
+                      <p className="text-gray-400 text-sm sm:text-base hover:text-white transition-colors duration-300">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -1025,21 +1111,21 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-center mt-12 sm:mt-16 animate-fadeInUp">
+          <div className="text-center mt-12 sm:mt-16 animate-on-scroll">
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 sm:mb-8 px-4">
               <Link
                 href="https://wa.me/5543999108255"
                 target="_blank"
-                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2 group"
               >
                 💬 Agendar Reunião Gratuita
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
 
               <Link
                 href="https://instagram.com/aytt.tech"
                 target="_blank"
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all flex items-center justify-center text-sm sm:text-base"
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2"
               >
                 📱 Seguir no Instagram
               </Link>
@@ -1052,37 +1138,131 @@ export default function Home() {
       <footer className="py-12 sm:py-16 bg-gradient-to-b from-black/90 to-black border-t border-white/10">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <div className="flex items-center justify-center mb-6 sm:mb-8">
-              <div className="text-xl sm:text-2xl font-bold">
-                <span className="text-blue-400">AYTT</span>
+            <div className="flex items-center justify-center mb-6 sm:mb-8 animate-on-scroll">
+              <div className="text-xl sm:text-2xl font-bold transform hover:scale-110 transition-transform duration-300">
+                <span className="text-blue-400 animate-pulse">AYTT</span>
                 <span className="text-gray-400 text-xs sm:text-sm ml-2">Assemble Your Tech Team</span>
               </div>
             </div>
 
-            <p className="text-gray-400 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base px-4">
+            <p className="text-gray-400 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base px-4 animate-on-scroll">
               Transformando complexidade em resultado. A tecnologia deveria simplificar, não complicar.
             </p>
 
-            <div className="flex justify-center space-x-6 mb-6 sm:mb-8">
-              <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+            <div className="flex justify-center space-x-6 mb-6 sm:mb-8 animate-on-scroll">
+              <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <Instagram className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
-              <a href="https://wa.me/5543999108255" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="https://wa.me/5543999108255" target="_blank" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
             </div>
 
-            <div className="border-t border-white/10 pt-6 sm:pt-8">
+            <div className="border-t border-white/10 pt-6 sm:pt-8 animate-on-scroll">
               <p className="text-gray-500 text-xs sm:text-sm">
                 © {new Date().getFullYear()} AYTT - Assemble Your Tech Team. Todos os direitos reservados.
               </p>
-              <p className="text-gray-500 text-xs sm:text-sm mt-2">
+              <p className="text-gray-500 text-xs sm:text-sm mt-2 animate-pulse">
                 Clareza • Transparência • Resultado
               </p>
             </div>
           </div>
         </div>
       </footer>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-30px) rotate(120deg); }
+          66% { transform: translateY(-60px) rotate(240deg); }
+        }
+        
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes gradient-x {
+          0%, 100% {
+            background-size: 200% 200%;
+            background-position: left center;
+          }
+          50% {
+            background-size: 200% 200%;
+            background-position: right center;
+          }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-slideInUp {
+          animation: slideInUp 0.8s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animate-slideInLeft {
+          animation: slideInLeft 0.5s ease-out forwards;
+        }
+        
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 3s ease infinite;
+        }
+        
+        .animate-on-scroll {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
+
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          // Intersection Observer for scroll animations
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          };
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          }, observerOptions);
+          
+          // Observe all elements with animate-on-scroll class
+          document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+          });
+        `
+      }} />
     </div>
   )
 }
