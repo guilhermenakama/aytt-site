@@ -147,19 +147,19 @@ export default function Home() {
       name: "Guilherme Nakama",
       role: "Sócio Fundador",
       description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
-      image: "/guilherme-profile-pic.png"
+      image: "/public/guilherme-profile-pic.png"
     },
     {
       name: "Rodolfo Spigai",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
-      image: "/rodolfo-profile-pic.png"
+      image: "/public/rodolfo-profile-pic.png"
     },
     {
       name: "Ronaldo Sirosse",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
-      image: "/ronaldo-profile-pic.png"
+      image: "/public/ronaldo-profile-pic.png"
     }
   ]
 
@@ -411,11 +411,6 @@ export default function Home() {
       <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-gradient-to-b from-black via-gray-900/20 to-black">
         <div className="w-full max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center animate-fadeInUp">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 animate-fadeIn delay-300">
-              <span className="bg-blue-500 h-2 w-2 rounded-full mr-2 animate-pulse"></span>
-              <span className="text-sm font-medium">AYTT - Assemble Your Tech Team</span>
-            </div>
-
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fadeInUp delay-500">
               Cansado de Projetos de IA que{" "}
               <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
@@ -558,8 +553,14 @@ export default function Home() {
                 style={{ animationDelay: `${0.2 * index}s` }}
               >
                 <div className="text-center mb-6">
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                    <User className="h-12 w-12 text-white" />
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg">
+                    <Image
+                      src={founder.image}
+                      alt={`Foto de ${founder.name}`}
+                      width={96}
+                      height={96}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{founder.name}</h3>
                   <p className="text-blue-400 font-medium">{founder.role}</p>
