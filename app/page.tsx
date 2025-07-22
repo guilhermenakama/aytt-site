@@ -38,7 +38,6 @@ import {
   Settings,
   CheckCircle,
   XCircle,
-  Pizza,
   Layers,
   Cpu,
   Database,
@@ -84,7 +83,6 @@ export default function Home() {
   const teamRef = useRef<HTMLElement>(null)
   const challengeRef = useRef<HTMLElement>(null)
   const architectureRef = useRef<HTMLElement>(null)
-  const pizzaRef = useRef<HTMLElement>(null)
   const practicalRef = useRef<HTMLElement>(null)
   const additionalRef = useRef<HTMLElement>(null)
   const readyRef = useRef<HTMLElement>(null)
@@ -107,7 +105,6 @@ export default function Home() {
         { id: "team", ref: teamRef },
         { id: "challenge", ref: challengeRef },
         { id: "architecture", ref: architectureRef },
-        { id: "pizza", ref: pizzaRef },
         { id: "practical", ref: practicalRef },
         { id: "additional", ref: additionalRef },
         { id: "ready", ref: readyRef },
@@ -150,28 +147,48 @@ export default function Home() {
       name: "Guilherme Nakama",
       role: "Sócio Fundador",
       description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
-      image: "/placeholder-user.jpg"
+      image: "/guilherme-profile-pic.png"
     },
     {
       name: "Rodolfo Spigai",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
-      image: "/placeholder-user.jpg"
+      image: "/rodolfo-profile-pic.png"
     },
     {
       name: "Ronaldo Sirosse",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
-      image: "/placeholder-user.jpg"
+      image: "/ronaldo-profile-pic.png"
     }
   ]
 
   const companyLogos = [
-    "4Intelligence", "Frimesa", "XCMG", "XCMG Bank", "Gazzin", "Sicoob", "Unimed", "OI", 
-    "Golfleet", "Ocellott", "Hitachi", "Indusbello", "Advise", "OAB Londrina", "Inatel", 
-    "Eccosave", "Leucotron Tech", "Inatel Startups", "ConsultoMAQ", "STTIR", "EVOVAS", 
-    "Life Nutri", "ISCAL"
-  ]
+  { name: "4Intelligence", file: "4intelligence.png" },
+  { name: "Frimesa", file: "frimesa.png" },
+  { name: "XCMG", file: "xcmg.png" },
+  { name: "XCMG Bank", file: "xcmg-bank.png" },
+  { name: "Gazin", file: "gazin.png" },
+  { name: "Sicoob", file: "sicoob.png" },
+  { name: "Unimed", file: "unimed.png" },
+  { name: "OI", file: "oi.png" },
+  { name: "Golfleet", file: "golfleet.png" },
+  { name: "Ocellott", file: "ocellott.png" },
+  { name: "Hitachi", file: "hitachi.png" },
+  { name: "Indusbello", file: "indusbello.png" },
+  { name: "Advise", file: "advise.png" },
+  { name: "OAB Londrina", file: "oab-londrina.jpeg" },
+  { name: "Inatel", file: "inatel.png" },
+  { name: "Eccosave", file: "eccosave.jpeg" },
+  { name: "Leucotron Tech", file: "leucotron-tech.png" },
+  { name: "Inatel Startups", file: "inatel-startups.png" },
+  { name: "ConsultoMAQ", file: "consultomaq.png" },
+  { name: "SMH", file: "smh.jpeg" },
+  { name: "EVVAS", file: "evvas.png" },
+  { name: "Life Nutri", file: "life-nutri.jpeg" },
+  { name: "ISCAL", file: "iscal.png" },
+];
+
 
   const solutionDifferentials = [
     { icon: <Users className="h-8 w-8" />, text: "Time composto por papéis definidos" },
@@ -449,14 +466,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-10 w-full flex justify-center animate-bounce">
-          <div className="text-center">
-            <p className="text-sm text-gray-400 mb-2">Explore Mais</p>
-            <div className="flex justify-center">
-              <ChevronDown className="h-6 w-6 text-gray-400" />
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Urgency Section */}
@@ -464,13 +473,13 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Enquanto Você Hesita, Seus{" "}
+              O Mercado Está{" "}
               <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
-                Concorrentes Avançam
+                Mudando Rápido
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-xl">
-              A IA deixou de ser tendência. Agora é <strong>vantagem competitiva decisiva</strong>.
+              A IA deixou de ser tendência. Agora é uma<strong>decisão estratégica</strong>.
             </p>
           </div>
 
@@ -492,9 +501,13 @@ export default function Home() {
           <div className="text-center bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-8 animate-fadeInUp delay-800">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Então é o momento de você conhecer a{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                AYTT
-              </span>
+              <Image
+                src="/logo.png"
+                alt="AYTT"
+                width={100}
+                height={40}
+                className="inline-block align-middle"
+              />
             </h3>
           </div>
         </div>
@@ -557,7 +570,7 @@ export default function Home() {
           </div>
 
           <div className="bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-8 md:p-12 border border-white/10 animate-fadeInUp delay-800">
-            <h3 className="text-2xl font-bold mb-8 text-center">Experiência Comprovada</h3>
+            <h3 className="text-2xl font-bold mb-8 text-center">Experiência</h3>
             <p className="text-center text-gray-300 mb-8">
               Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
             </p>
@@ -567,7 +580,13 @@ export default function Home() {
                   key={index}
                   className="bg-white/5 backdrop-blur-sm rounded-lg p-4 text-center border border-white/10 hover:border-blue-500/30 transition-all"
                 >
-                  <p className="text-sm text-gray-400">{logo}</p>
+                  <Image
+                    src={`/logos/${logo.file}`}
+                    alt={logo.name}
+                    width={100}
+                    height={50}
+                    className="object-contain mx-auto h-10"
+                  />
                 </div>
               ))}
             </div>
@@ -752,54 +771,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pizza Analogy Section */}
-      <section id="pizza" ref={pizzaRef} className="py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              A Analogia da{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Pizza 🍕
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300">
-              O Erro Mais Comum em Projetos de IA Explicado com... Pizza
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 animate-fadeInUp">
-              <div className="text-center mb-8">
-                <div className="text-6xl mb-4">🍕</div>
-              </div>
-              
-              <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
-                <p>
-                  Imagine uma IA responsável por identificar fatias com calabresa em uma pizza com 100 sabores. 
-                  Mas... calabresa moída vale? E presunto moído? Peperoni é calabresa?
-                </p>
-                
-                <p>
-                  Como se trata de um software probabilístico, ela consome muitos tokens e por vezes traz resultados incorretos.
-                </p>
-                
-                <div className="bg-blue-900/20 rounded-xl p-6 border border-blue-500/20">
-                  <p className="font-semibold text-blue-400 mb-4">A Solução AYTT:</p>
-                  <p>
-                    Quando dividimos a pizza de 100 sabores em várias pizzas de 2 sabores, aumentamos a complexidade da 
-                    arquitetura do software mas simplificamos muito a complexidade da tarefa atribuída à IA (agentes super especializados).
-                  </p>
-                </div>
-                
-                <p className="text-center font-semibold text-green-400">
-                  Com isso, aumentamos a taxa de acerto reduzindo o custo do processamento.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Practical Solutions Section */}
       <section id="practical" ref={practicalRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-6">
@@ -901,59 +872,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ROI Section - Nova seção para diretores */}
-      <section className="py-24 relative bg-gradient-to-b from-green-900/20 via-green-900/10 to-black">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Resultados{" "}
-              <span className="bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text">
-                Mensuráveis
-              </span>{" "}
-              em 90 Dias
-            </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Nossos clientes veem impacto real no negócio, não apenas tecnologia funcionando.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {[
-              { metric: "75%", description: "Redução no tempo de atendimento ao cliente", icon: <Clock className="h-8 w-8" /> },
-              { metric: "60%", description: "Economia em custos operacionais", icon: <DollarSign className="h-8 w-8" /> },
-              { metric: "3x", description: "Aumento na qualificação de leads", icon: <TrendingUp className="h-8 w-8" /> },
-              { metric: "90%", description: "Redução em tarefas repetitivas", icon: <Zap className="h-8 w-8" /> }
-            ].map((result, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-8 border border-green-500/20 text-center animate-fadeInUp"
-                style={{ animationDelay: `${0.1 * index}s` }}
-              >
-                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                  {result.icon}
-                </div>
-                <div className="text-3xl font-bold text-green-400 mb-2">{result.metric}</div>
-                <p className="text-gray-300 text-sm">{result.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-8 md:p-12 border border-green-500/20 animate-fadeInUp delay-800">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6 text-green-400">
-                Investimento que se Paga
-              </h3>
-              <p className="text-xl text-gray-300 mb-6">
-                ROI médio de <strong className="text-green-400">300%</strong> no primeiro ano
-              </p>
-              <p className="text-gray-400">
-                Enquanto consultorias cobram por hora, nós entregamos valor mensurável para seu negócio.
-              </p>
-            </div>
           </div>
         </div>
       </section>
