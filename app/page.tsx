@@ -25,6 +25,47 @@ import {
   AlertTriangle,
   Target,
   MessageCircle,
+  Clock,
+  TrendingUp,
+  Shuffle,
+  DollarSign,
+  FileText,
+  Calendar,
+  Star,
+  Award,
+  Briefcase,
+  Settings,
+  CheckCircle,
+  XCircle,
+  Pizza,
+  Layers,
+  Cpu,
+  Database,
+  Globe,
+  Phone,
+  Mail,
+  MapPin,
+  Building,
+  Lightbulb,
+  Rocket,
+  Eye,
+  Heart,
+  ThumbsUp,
+  UserCheck,
+  FileSearch,
+  MessageSquare,
+  Headphones,
+  BarChart,
+  PenTool,
+  Cog,
+  BookOpen,
+  GraduationCap,
+  Repeat,
+  Gauge,
+  Zap as ZapIcon,
+  TrendingDown,
+  Coffee,
+  Smile
 } from "lucide-react"
 
 export default function Home() {
@@ -36,12 +77,17 @@ export default function Home() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null)
 
   const heroRef = useRef<HTMLElement>(null)
-  const problemRef = useRef<HTMLElement>(null)
-  const aboutRef = useRef<HTMLElement>(null)
-  const featuresRef = useRef<HTMLElement>(null)
-  const showcaseRef = useRef<HTMLElement>(null)
-  const testimonialsRef = useRef<HTMLElement>(null)
-  const pricingRef = useRef<HTMLElement>(null)
+  const urgencyRef = useRef<HTMLElement>(null)
+  const philosophyRef = useRef<HTMLElement>(null)
+  const foundersRef = useRef<HTMLElement>(null)
+  const solutionsRef = useRef<HTMLElement>(null)
+  const teamRef = useRef<HTMLElement>(null)
+  const challengeRef = useRef<HTMLElement>(null)
+  const architectureRef = useRef<HTMLElement>(null)
+  const pizzaRef = useRef<HTMLElement>(null)
+  const practicalRef = useRef<HTMLElement>(null)
+  const additionalRef = useRef<HTMLElement>(null)
+  const readyRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -54,12 +100,17 @@ export default function Home() {
 
       const sections = [
         { id: "home", ref: heroRef },
-        { id: "problem", ref: problemRef },
-        { id: "about", ref: aboutRef },
-        { id: "features", ref: featuresRef },
-        { id: "showcase", ref: showcaseRef },
-        { id: "testimonials", ref: testimonialsRef },
-        { id: "pricing", ref: pricingRef },
+        { id: "urgency", ref: urgencyRef },
+        { id: "philosophy", ref: philosophyRef },
+        { id: "founders", ref: foundersRef },
+        { id: "solutions", ref: solutionsRef },
+        { id: "team", ref: teamRef },
+        { id: "challenge", ref: challengeRef },
+        { id: "architecture", ref: architectureRef },
+        { id: "pizza", ref: pizzaRef },
+        { id: "practical", ref: practicalRef },
+        { id: "additional", ref: additionalRef },
+        { id: "ready", ref: readyRef },
         { id: "contact", ref: contactRef },
       ]
 
@@ -78,124 +129,179 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const testimonials = [
-    {
-      name: "João Silva",
-      role: "Diretor de TI, MedTech Solutions",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
-      content:
-        "Tentamos 3 consultorias diferentes antes da AYTT. Todas prometiam, nenhuma entregava. Com a AYTT tivemos um squad dedicado que realmente funcionou.",
-    },
-    {
-      name: "Maria Santos",
-      role: "CEO, LogisticaPro",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b85b4d6d?w=80&h=80&fit=crop&crop=face",
-      content:
-        "O diferencial foi ter pessoas que falam nossa língua. Não precisamos mais 'traduzir' entre técnico e negócio.",
-    },
-    {
-      name: "Carlos Mendes",
-      role: "Gerente Comercial, VendasCorp",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
-      content:
-        "Finalmente conseguimos automatizar nosso atendimento. O SDR com IA está funcionando há 6 meses sem problema.",
-    },
+  const painPoints = [
+    { icon: <FileText className="h-6 w-6" />, text: "A empresa não entregou o que foi combinado" },
+    { icon: <Clock className="h-6 w-6" />, text: "A entrega demorou mais do que o previsto" },
+    { icon: <TrendingUp className="h-6 w-6" />, text: "O resultado final não atende às expectativas" },
+    { icon: <Shuffle className="h-6 w-6" />, text: "O escopo mudou várias vezes e nada ficou claro" },
+    { icon: <MessageCircle className="h-6 w-6" />, text: "A comunicação foi falha e sem alinhamento com o negócio" },
+    { icon: <DollarSign className="h-6 w-6" />, text: "Você precisa lidar com o prejuízo" },
   ]
 
-  const problems = [
-    "Contratou uma empresa de IA e ela não entregou o que foi combinado",
-    "A entrega demorou o dobro do tempo e não atendeu suas expectativas",
-    "O escopo mudou 10 vezes e nada ficou claro",
-    "Recebeu PowerPoints ao invés de soluções funcionando",
-    "A comunicação foi um desastre total",
-    "Ficou sem saber se o problema era técnico ou do negócio"
+  const urgencyIndicators = [
+    { icon: <Scale className="h-8 w-8" />, text: "A pressão por eficiência e redução de custos está aumentando" },
+    { icon: <Brain className="h-8 w-8" />, text: "Seus concorrentes já estão usando IA" },
+    { icon: <Zap className="h-8 w-8" />, text: "Decisões precisam ser mais rápidas e assertivas" },
+    { icon: <Award className="h-8 w-8" />, text: "É hora de ganhar vantagem competitiva" },
   ]
 
-  const solutions = [
+  const founders = [
     {
-      icon: <Target className="h-8 w-8" />,
-      title: "Squad com Papéis Definidos",
-      description: "Líder Técnico, Gerente de Projetos e Especialistas. Cada um com responsabilidades claras.",
+      name: "Guilherme Nakama",
+      role: "Sócio Fundador",
+      description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
+      image: "/placeholder-user.jpg"
     },
     {
-      icon: <MessageCircle className="h-8 w-8" />,
-      title: "Comunicação em Linguagem de Negócio",
-      description: "Sem 'tech talk' confuso. Falamos sobre resultados, impacto e ROI do seu projeto.",
+      name: "Rodolfo Spigai",
+      role: "Sócio Fundador",
+      description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
+      image: "/placeholder-user.jpg"
     },
     {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Flexibilidade Total",
-      description: "Sem escopo engessado. Adaptamos conforme sua necessidade e evolução do projeto.",
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Suporte Técnico Completo",
-      description: "Do início ao fim, com acompanhamento dedicado e resolução proativa de problemas.",
-    },
-    {
-      icon: <BarChart3 className="h-8 w-8" />,
-      title: "Resultado Mensurável",
-      description: "IA que resolve problema real do seu negócio, não PowerPoint colorido na gaveta.",
-    },
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: "Bridge Técnico-Negócio",
-      description: "Profissionais que entendem tanto de tecnologia quanto do seu setor e desafios.",
-    },
+      name: "Ronaldo Sirosse",
+      role: "Sócio Fundador",
+      description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
+      image: "/placeholder-user.jpg"
+    }
   ]
 
-  const plans = [
+  const companyLogos = [
+    "4Intelligence", "Frimesa", "XCMG", "XCMG Bank", "Gazzin", "Sicoob", "Unimed", "OI", 
+    "Golfleet", "Ocellott", "Hitachi", "Indusbello", "Advise", "OAB Londrina", "Inatel", 
+    "Eccosave", "Leucotron Tech", "Inatel Startups", "ConsultoMAQ", "STTIR", "EVOVAS", 
+    "Life Nutri", "ISCAL"
+  ]
+
+  const solutionDifferentials = [
+    { icon: <Users className="h-8 w-8" />, text: "Time composto por papéis definidos" },
+    { icon: <Target className="h-8 w-8" />, text: "Foco total em eficiência na alocação de talentos" },
+    { icon: <BarChart3 className="h-8 w-8" />, text: "Contrato baseado em perfis, não em escopos fechados" },
+    { icon: <Settings className="h-8 w-8" />, text: "Consultoria e apoio técnico do início ao fim" },
+    { icon: <Headphones className="h-8 w-8" />, text: "Suporte contínuo durante todo projeto" },
+  ]
+
+  const teamRoles = [
     {
-      name: "Squad Essencial",
-      description: "Para empresas que estão começando com IA",
-      features: [
-        "1 Líder Técnico",
-        "1 Gerente de Projetos",
-        "2-3 Especialistas em IA",
-        "Suporte técnico dedicado",
-        "Comunicação em linguagem de negócio",
-        "Flexibilidade de escopo",
+      title: "LÍDER TÉCNICO",
+      description: "Define arquitetura técnica e orienta estrategicamente soluções de IA",
+      responsibilities: [
+        "Arquitetura de Soluções: Define estratégias técnicas adequadas",
+        "Análise de Viabilidade: Conduz estudos técnicos",
+        "Liderança da Equipe: Orienta boas práticas e garante qualidade"
       ],
-      cta: "Consultar Valores",
-      popular: false,
+      icon: <Brain className="h-12 w-12" />
     },
     {
-      name: "Squad Pro",
-      description: "Para empresas em crescimento",
-      features: [
-        "1 Líder Técnico Sênior",
-        "1 Gerente de Projetos",
-        "4-6 Especialistas",
-        "Suporte prioritário",
-        "Consultoria estratégica",
-        "Integração com processos internos",
-        "Acompanhamento semanal",
+      title: "GERENTE DE PROJETOS",
+      description: "Coordena prazos, orçamento e comunicação cliente-equipe",
+      responsibilities: [
+        "Gestão de Cronogramas: Planeja e monitora entregas",
+        "Comunicação Estratégica: Coordena alinhamento",
+        "Controle de Recursos: Gerencia riscos e qualidade"
       ],
-      cta: "Consultar Valores",
-      popular: true,
+      icon: <Target className="h-12 w-12" />
     },
     {
-      name: "Squad Enterprise",
-      description: "Para grandes corporações",
-      features: [
-        "Squads completos personalizados",
-        "Arquiteto de soluções dedicado",
-        "Suporte 24/7",
-        "Gerente de conta exclusivo",
-        "Integração com metodologias internas",
-        "Treinamento e mentoria",
-        "Consultoria estratégica completa",
+      title: "CONSULTOR TECH",
+      description: "Traduz objetivos do negócio em soluções práticas com IA",
+      responsibilities: [
+        "Explora Oportunidades: Identifica onde IA pode gerar valor",
+        "Definição de Soluções: Define soluções viáveis e alinhadas",
+        "Validação Estratégica: Valida impacto e escopo"
       ],
-      cta: "Conversar com Especialista",
-      popular: false,
+      icon: <Lightbulb className="h-12 w-12" />
     },
+    {
+      title: "TÉCNICO",
+      description: "Executa implementação prática das soluções de IA",
+      responsibilities: [
+        "Desenvolvimento: Implementa automações e modelos de IA",
+        "Integração de Sistemas: Conecta novas tecnologias",
+        "Deploy e Manutenção: Realiza deploy e garante funcionamento"
+      ],
+      icon: <Code className="h-12 w-12" />
+    }
+  ]
+
+  const practicalSolutions = [
+    {
+      title: "PRIMEIRO ATENDIMENTO AO CLIENTE",
+      features: [
+        "Atendimento Inicial 24/7: Conversas iniciais, perguntas básicas",
+        "Pré-cadastro de Leads: Identifica e coleta informações",
+        "Pré-qualificação de Leads: Classifica com critérios predefinidos",
+        "Agendamento de Reuniões: Marca reuniões quando há interesse"
+      ],
+      example: {
+        bot: "Oi, aqui é a Bia da AYTT! Como posso te ajudar? 😄",
+        user: "Oi, como funciona a alocação de times de IA de vocês?",
+        response: "Ótima pergunta! Nós montamos um time completo para a sua empresa!"
+      },
+      icon: <MessageSquare className="h-8 w-8" />
+    },
+    {
+      title: "ATENDIMENTO PRÉ E PÓS-VENDA",
+      features: [
+        "Atendimento 24/7: Responde perguntas básicas sempre",
+        "Esclarecimento de Dúvidas: Produtos e serviços de forma clara",
+        "Pesquisa de Satisfação: Coleta feedback para insights"
+      ],
+      icon: <Headphones className="h-8 w-8" />
+    },
+    {
+      title: "TRIAGEM DE CURRÍCULOS",
+      features: [
+        "Extração automática de dados: Captura informações (PDF, imagem)",
+        "Classificação de aderência: Avalia compatibilidade currículo-vaga",
+        "Priorização de perfis: Ordena candidatos mais alinhados"
+      ],
+      icon: <FileSearch className="h-8 w-8" />
+    },
+    {
+      title: "LEITURA DE DOCUMENTOS",
+      features: [
+        "Boletos: Extração de dados, classificação de contas, padronização",
+        "Notas Fiscais: Captura informações, categorização, padronização",
+        "Pedidos por Imagem: Reconhece documentos manuscritos, extrai dados, valida"
+      ],
+      icon: <FileText className="h-8 w-8" />
+    },
+    {
+      title: "ATENDIMENTO MÍDIAS SOCIAIS",
+      features: [
+        "Responde comentário de posts",
+        "Atendimento em DMs",
+        "Esclarecimento de dúvidas de produtos"
+      ],
+      icon: <Instagram className="h-8 w-8" />
+    }
+  ]
+
+  const additionalServices = [
+    {
+      title: "CONSULTORIA SOB DEMANDA",
+      services: [
+        "Arquitetura de Soluções com IA: Apoio técnico na construção com IA e N8N, foco em eficiência e escalabilidade",
+        "Orientação Estratégica Personalizada: Discussão de casos reais e orientação sob medida"
+      ],
+      icon: <Building className="h-8 w-8" />
+    },
+    {
+      title: "TREINAMENTOS CUSTOMIZADOS",
+      services: [
+        "Treinamentos In Company: Formações práticas adaptadas à realidade da equipe",
+        "Workshops Sob Demanda: Formações exclusivas com foco em aplicação imediata"
+      ],
+      icon: <GraduationCap className="h-8 w-8" />
+    }
+  ]
+
+  const readyChecklist = [
+    { icon: <Repeat className="h-6 w-6" />, text: "Tem processos repetitivos que consomem tempo da equipe" },
+    { icon: <Brain className="h-6 w-6" />, text: "Sabe que precisa de IA, mas não sabe por onde começar" },
+    { icon: <Gauge className="h-6 w-6" />, text: "Perde oportunidades por lentidão operacional" },
+    { icon: <TrendingDown className="h-6 w-6" />, text: "Se frustrou com projetos de tecnologia" },
   ]
 
   return (
@@ -203,63 +309,40 @@ export default function Home() {
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black pointer-events-none"></div>
 
-      {/* Animated Particles */}
-      <div className="particles">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className={`particle particle-${i + 1}`}></div>
-        ))}
-      </div>
-
-      {/* Video Modal */}
-      {showVideo && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-fadeIn"
-          onClick={() => setShowVideo(false)}
-        >
-          <div className="relative w-full max-w-4xl aspect-video animate-scaleIn" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="absolute -top-12 right-0 text-white hover:text-blue-400 transition-colors"
-              onClick={() => setShowVideo(false)}
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="w-full h-full bg-gray-800 rounded-lg flex items-center justify-center">
-              <p className="text-gray-400">Vídeo demonstrativo da AYTT</p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "py-6"}`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center">
-            <Image
-              src="/logo.png"
-              alt="AYTT - Assemble Your Tech Team"
-              width={150}
-              height={60}
-              className="h-10 w-auto"
-            />
+            <div className="text-2xl font-bold">
+              <span className="text-blue-400">AYTT</span>
+              <span className="text-gray-400 text-sm ml-2">Assemble Your Tech Team</span>
+            </div>
           </div>
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {["home", "problem", "about", "features", "showcase", "testimonials", "pricing", "contact"].map((item) => (
+            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item) => (
               <Link
                 key={item}
                 href={`#${item}`}
                 className={`text-sm uppercase tracking-wider font-medium transition-colors hover:text-blue-400 ${activeSection === item ? "text-blue-400" : "text-gray-300"}`}
               >
-                {item === "problem" ? "Problemas" : item.charAt(0).toUpperCase() + item.slice(1)}
+                {item === "home" ? "Início" : 
+                 item === "urgency" ? "Urgência" :
+                 item === "philosophy" ? "Filosofia" :
+                 item === "founders" ? "Fundadores" :
+                 item === "solutions" ? "Soluções" :
+                 item === "team" ? "Time" :
+                 item === "challenge" ? "Desafio" :
+                 item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
             ))}
           </nav>
 
           <div className="hidden lg:flex items-center">
             <Link
-              href="https://wa.me/5543991923676"
+              href="https://wa.me/5543999108255"
               target="_blank"
               className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 py-2.5 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25"
             >
@@ -277,19 +360,26 @@ export default function Home() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-30 lg:hidden bg-black/95 backdrop-blur-md pt-24 animate-slideInRight">
           <nav className="container mx-auto px-6 flex flex-col space-y-8 py-8">
-            {["home", "problem", "about", "features", "showcase", "testimonials", "pricing", "contact"].map((item) => (
+            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item) => (
               <Link
                 key={item}
                 href={`#${item}`}
                 className="text-xl font-medium border-b border-gray-800 pb-4 flex justify-between items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span>{item === "problem" ? "Problemas" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
+                <span>{item === "home" ? "Início" : 
+                       item === "urgency" ? "Urgência" :
+                       item === "philosophy" ? "Filosofia" :
+                       item === "founders" ? "Fundadores" :
+                       item === "solutions" ? "Soluções" :
+                       item === "team" ? "Time" :
+                       item === "challenge" ? "Desafio" :
+                       item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
                 <ChevronRight className="h-5 w-5 text-blue-400" />
               </Link>
             ))}
             <Link
-              href="https://wa.me/5543991923676"
+              href="https://wa.me/5543999108255"
               target="_blank"
               className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-full font-medium text-center mt-4"
               onClick={() => setIsMenuOpen(false)}
@@ -306,31 +396,48 @@ export default function Home() {
           <div className="text-center animate-fadeInUp">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 animate-fadeIn delay-300">
               <span className="bg-blue-500 h-2 w-2 rounded-full mr-2 animate-pulse"></span>
-              <span className="text-sm font-medium">Squads especializados em IA e Automação</span>
+              <span className="text-sm font-medium">AYTT - Assemble Your Tech Team</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fadeInUp delay-500">
-              Automatize Seu Negócio com{" "}
+              Imagine Investir{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                IA Sem Dor de Cabeça
-              </span>
+                Meses em um Projeto de IA
+              </span>{" "}
+              e...
             </h1>
 
-            <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-4xl mx-auto animate-fadeInUp delay-700">
-              Na AYTT, você contrata capacidade técnica e recebe clareza de resultado.<br />
-              <strong>Sem escopo engessado. Sem zona cinzenta.</strong>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
+              {painPoints.map((point, index) => (
+                <div
+                  key={index}
+                  className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 animate-fadeInUp"
+                  style={{ animationDelay: `${0.7 + 0.1 * index}s` }}
+                >
+                  <div className="flex items-start">
+                    <div className="text-red-400 mr-3 mt-1 flex-shrink-0">
+                      {point.icon}
+                    </div>
+                    <p className="text-gray-300 text-sm">{point.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-2xl md:text-3xl font-semibold mb-8 text-red-400 animate-fadeInUp delay-1200">
+              Essa situação te soa familiar?
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-900">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-1400">
               <Link
-                href="#contact"
+                href="#urgency"
                 className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-8 py-4 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center"
               >
-                Montar Meu Squad
+                Conhecer a AYTT
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
-                href="https://wa.me/5543991923676"
+                href="https://wa.me/5543999108255"
                 target="_blank"
                 className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-medium transition-all flex items-center justify-center"
               >
@@ -349,396 +456,500 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section id="problem" ref={problemRef} className="py-24 relative bg-gradient-to-b from-black via-red-900/10 to-gray-900/30">
+      {/* Urgency Section */}
+      <section id="urgency" ref={urgencyRef} className="py-24 relative bg-gradient-to-b from-black via-blue-900/10 to-gray-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-red-400">
-              Cansado de Projetos de IA que{" "}
-              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
-                Não Saem do Papel?
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              O Mercado Está{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Mudando Rápido
               </span>
             </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              <strong>Se você já passou por isso:</strong>
+            <p className="text-gray-300 max-w-3xl mx-auto text-xl">
+              A Inteligência Artificial já não é mais tendência — é uma decisão estratégica.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {problems.map((problem, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {urgencyIndicators.map((indicator, index) => (
               <div
                 key={index}
-                className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 animate-fadeInUp"
+                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-8 border border-blue-500/20 text-center animate-fadeInUp"
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
-                <div className="flex items-start">
-                  <AlertTriangle className="h-6 w-6 text-red-400 mr-3 mt-1 flex-shrink-0" />
-                  <p className="text-gray-300">{problem}</p>
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  {indicator.icon}
                 </div>
+                <p className="text-gray-300">{indicator.text}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-8 animate-fadeInUp delay-800">
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Então é o momento de você conhecer a{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                O problema não é a IA.
+                AYTT
               </span>
             </h3>
-            <p className="text-xl text-gray-300">
-              É como ela está sendo vendida para você.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" ref={aboutRef} className="py-24 relative bg-gradient-to-b from-gray-900/30 via-gray-900/20 to-black">
+      {/* Philosophy Section */}
+      <section id="philosophy" ref={philosophyRef} className="py-24 relative bg-gradient-to-b from-gray-900/30 via-gray-900/20 to-black">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
+            <blockquote className="text-2xl md:text-3xl font-bold mb-12 italic">
+              "A AYTT nasceu de uma convicção simples: a tecnologia deveria{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                simplificar, não complicar.
+              </span>"
+            </blockquote>
+
+            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 animate-fadeInUp delay-300">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
+                Não vendemos soluções mágicas. Oferecemos pessoas qualificadas, processos claros e comunicação honesta. 
+                Porque inovação de verdade acontece quando há confiança mútua e expectativas alinhadas.
+              </p>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                Enquanto o mercado fala em revolução, nós falamos em evolução. Construímos mudanças sustentáveis, 
+                respeitando o ritmo e a cultura de cada empresa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founders Section */}
+      <section id="founders" ref={foundersRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              A AYTT Resolve de{" "}
+              Founders{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                um Jeito Diferente
+                Multidisciplinares
               </span>
             </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Enquanto consultoria entrega conselho, <strong>a AYTT entrega resultado.</strong><br />
-              Nosso modelo é simples: alocamos squads de automação com IA com papéis definidos.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution, index) => (
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {founders.map((founder, index) => (
               <div
                 key={index}
                 className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                style={{ animationDelay: `${0.2 * index}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 w-14 h-14 flex items-center justify-center mb-6">
-                  {solution.icon}
+                <div className="text-center mb-6">
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                    <User className="h-12 w-12 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{founder.name}</h3>
+                  <p className="text-blue-400 font-medium">{founder.role}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{solution.title}</h3>
-                <p className="text-gray-400">{solution.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{founder.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-20 bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-8 md:p-12 border border-white/10 animate-fadeInUp delay-800">
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                Composição do Nosso{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Squad</span>
-              </h3>
-              
-              <div className="grid md:grid-cols-3 gap-8 mt-12">
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Brain className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2">Líder Técnico</h4>
-                  <p className="text-gray-400">Bridge entre técnico e negócio</p>
+          <div className="bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-8 md:p-12 border border-white/10 animate-fadeInUp delay-800">
+            <h3 className="text-2xl font-bold mb-8 text-center">Experiência Comprovada</h3>
+            <p className="text-center text-gray-300 mb-8">
+              Nossos fundadores têm experiência em consultoria e serviços tecnológicos para empresas consolidadas no mercado:
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {companyLogos.map((logo, index) => (
+                <div
+                  key={index}
+                  className="bg-white/5 backdrop-blur-sm rounded-lg p-4 text-center border border-white/10 hover:border-blue-500/30 transition-all"
+                >
+                  <p className="text-sm text-gray-400">{logo}</p>
                 </div>
-                
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2">Gerente de Projetos</h4>
-                  <p className="text-gray-400">Clareza na entrega e comunicação</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <Code className="h-8 w-8 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2">Especialistas</h4>
-                  <p className="text-gray-400">Desenvolvimento e implementação</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section - Comparativo */}
-      <section id="features" ref={featuresRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+      {/* Solutions Section */}
+      <section id="solutions" ref={solutionsRef} className="py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Por Que{" "}
+              Como Entregamos{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Alocação
-              </span>{" "}
-              ao Invés de Consultoria?
+                Soluções
+              </span>
             </h2>
+            <p className="text-xl text-gray-300 mb-4">Alocação de Times de Desenvolvimento de Soluções de IA</p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm rounded-2xl p-8 border border-white/20 animate-fadeInUp">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="border-b border-white/10">
-                      <th className="pb-4 text-lg font-semibold text-gray-300">Aspecto</th>
-                      <th className="pb-4 text-lg font-semibold text-red-400">Consultoria Tradicional</th>
-                      <th className="pb-4 text-lg font-semibold text-blue-400">Alocação AYTT</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-300">
-                    <tr className="border-b border-white/5">
-                      <td className="py-4 font-medium">Escopo</td>
-                      <td className="py-4">Fechado e rígido</td>
-                      <td className="py-4 text-green-400">Flexibilidade para adaptar</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-4 font-medium">Entrega</td>
-                      <td className="py-4">Relatórios e PowerPoints</td>
-                      <td className="py-4 text-green-400">Soluções funcionando</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-4 font-medium">Cobrança</td>
-                      <td className="py-4">Por hora trabalhada</td>
-                      <td className="py-4 text-green-400">Por resultado entregue</td>
-                    </tr>
-                    <tr className="border-b border-white/5">
-                      <td className="py-4 font-medium">Equipe</td>
-                      <td className="py-4">Consultor generalista</td>
-                      <td className="py-4 text-green-400">Squad com papéis definidos</td>
-                    </tr>
-                    <tr>
-                      <td className="py-4 font-medium">Comunicação</td>
-                      <td className="py-4">Técnica e confusa</td>
-                      <td className="py-4 text-green-400">Linguagem de negócio</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+            {solutionDifferentials.map((differential, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 text-center animate-fadeInUp"
+                style={{ animationDelay: `${0.1 * index}s` }}
+              >
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 w-14 h-14 flex items-center justify-center mx-auto mb-4">
+                  {differential.icon}
+                </div>
+                <p className="text-gray-300 text-sm">{differential.text}</p>
               </div>
-            </div>
+            ))}
+          </div>
+
+          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-8 animate-fadeInUp delay-800">
+            <h3 className="text-2xl font-bold mb-4 text-green-400">
+              Vantagem Competitiva
+            </h3>
+            <p className="text-xl text-gray-300">
+              Soluções personalizadas para o seu negócio, sem escopo engessado
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Showcase Section - Exemplos */}
-      <section id="showcase" ref={showcaseRef} className="py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
+      {/* Team Section */}
+      <section id="team" ref={teamRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Exemplos de IA que{" "}
+              Time{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Realmente Funcionam
+                Completo
               </span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                title: "SDR Inteligente",
-                description: "Primeiro atendimento que qualifica leads de verdade",
-                icon: <MessageCircle className="h-8 w-8" />
-              },
-              {
-                title: "Triagem de CVs",
-                description: "Encontre candidatos certos em minutos",
-                icon: <Users className="h-8 w-8" />
-              },
-              {
-                title: "Análise de Dados",
-                description: "Decisões baseadas em insights reais",
-                icon: <BarChart3 className="h-8 w-8" />
-              },
-              {
-                title: "Assistentes de Trabalho",
-                description: "Automatize tarefas burocráticas",
-                icon: <Zap className="h-8 w-8" />
-              },
-              {
-                title: "Criação de Conteúdo",
-                description: "Materiais relevantes em escala",
-                icon: <Sparkles className="h-8 w-8" />
-              },
-              {
-                title: "Automação de Processos",
-                description: "Fluxos inteligentes de trabalho",
-                icon: <Brain className="h-8 w-8" />
-              }
-            ].map((example, index) => (
+          <div className="grid lg:grid-cols-2 gap-8">
+            {teamRoles.map((role, index) => (
               <div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
+                style={{ animationDelay: `${0.2 * index}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 w-14 h-14 flex items-center justify-center mb-6">
-                  {example.icon}
+                <div className="flex items-start mb-6">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 mr-4 flex-shrink-0">
+                    {role.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">{role.title}</h3>
+                    <p className="text-gray-400 mb-4">{role.description}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{example.title}</h3>
-                <p className="text-gray-400">{example.description}</p>
+                
+                <div className="space-y-3">
+                  {role.responsibilities.map((responsibility, i) => (
+                    <div key={i} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <p className="text-gray-300 text-sm">{responsibility}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="bg-gradient-to-r from-gray-900/60 via-black/80 to-blue-900/40 rounded-3xl p-8 md:p-12 border border-white/20 animate-fadeInUp">
-            <h3 className="text-2xl font-bold mb-8 text-center">Arquiteturas que Desenvolvemos</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="text-center">
-                <h4 className="text-lg font-semibold mb-4 text-blue-400">Arquitetura Simples</h4>
-                <p className="text-gray-300">WhatsApp → IA → Google Calendar</p>
-                <p className="text-sm text-gray-400 mt-2">Para agendamentos e interações básicas</p>
-              </div>
-              <div className="text-center">
-                <h4 className="text-lg font-semibold mb-4 text-blue-400">Arquitetura Robusta</h4>
-                <p className="text-gray-300">Fluxos complexos com múltiplas integrações</p>
-                <p className="text-sm text-gray-400 mt-2">Para decisões avançadas e automações completas</p>
+      {/* Challenge Section */}
+      <section id="challenge" ref={challengeRef} className="py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 animate-fadeInUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              O Grande Desafio dos{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Projetos de IA
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+              Projetos de IA exigem muito mais do que desenvolvimento de software comum
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 mb-12 animate-fadeInUp">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                Eles envolvem elementos com output probabilístico (IA) e maior incerteza técnica. Ao projetar uma arquitetura 
+                de solução com IA, é fundamental compreender as limitações e potencialidades para garantir desempenho, 
+                escalabilidade e viabilidade financeira.
+              </p>
+              
+              <div className="bg-red-900/20 rounded-xl p-6 border border-red-500/20">
+                <h3 className="text-xl font-bold text-red-400 mb-4">Problema Comum</h3>
+                <p className="text-gray-300">
+                  Tratar IA como um "componente mágico que resolve tudo" gera frustração, altos custos de processamento 
+                  e resultados insatisfatórios.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" ref={testimonialsRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
+      {/* Architecture Section */}
+      <section id="architecture" ref={architectureRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              O que Nossos{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Clientes</span>{" "}
-              Dizem
+              Arquitetura Simples vs{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Robusta
+              </span>
             </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Empresas que superaram as frustrações com projetos de IA e agora têm automações funcionando.
-            </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-8 border border-red-500/20 animate-fadeInLeft">
+              <div className="flex items-center mb-6">
+                <XCircle className="h-8 w-8 text-red-400 mr-3" />
+                <h3 className="text-2xl font-bold text-red-400">Arquitetura Simples</h3>
+              </div>
+              
+              <div className="space-y-4">
+                {[
+                  "Modelo único para múltiplas tarefas",
+                  "Sem separação de responsabilidades",
+                  "Consumo excessivo de tokens",
+                  "Difícil manutenção e escalabilidade",
+                  "Baixa precisão em tarefas específicas"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start">
+                    <XCircle className="h-5 w-5 text-red-400 mr-3 mt-0.5 flex-shrink-0" />
+                    <p className="text-gray-300">{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="relative z-10">
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 max-w-4xl mx-auto animate-fadeIn">
-                <div className="flex flex-col items-center text-center">
-                  <div className="relative mb-8">
-                    <div className="absolute inset-0 -m-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full blur-md"></div>
-                    <Image
-                      src={testimonials[currentTestimonial].image}
-                      alt={testimonials[currentTestimonial].name}
-                      width={80}
-                      height={80}
-                      className="rounded-full relative z-10 border-2 border-white object-cover"
-                    />
-                  </div>
-
-                  <blockquote className="text-xl md:text-2xl font-medium mb-6 italic">
-                    "{testimonials[currentTestimonial].content}"
-                  </blockquote>
-
-                  <div>
-                    <p className="text-lg font-semibold">{testimonials[currentTestimonial].name}</p>
-                    <p className="text-gray-400">{testimonials[currentTestimonial].role}</p>
-                  </div>
-                </div>
+            <div className="bg-green-900/10 backdrop-blur-sm rounded-2xl p-8 border border-green-500/20 animate-fadeInRight">
+              <div className="flex items-center mb-6">
+                <CheckCircle className="h-8 w-8 text-green-400 mr-3" />
+                <h3 className="text-2xl font-bold text-green-400">Arquitetura Robusta (AYTT)</h3>
               </div>
-
-              <div className="flex justify-center mt-8 space-x-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      currentTestimonial === index ? "bg-blue-500 w-8" : "bg-gray-600"
-                    }`}
-                    aria-label={`Ver depoimento ${index + 1}`}
-                  />
+              
+              <div className="space-y-4">
+                {[
+                  "Agentes especializados para cada tarefa",
+                  "Separação clara de responsabilidades",
+                  "Consumo otimizado de tokens",
+                  "Fácil manutenção e escalabilidade",
+                  "Maior precisão em tarefas específicas"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                    <p className="text-gray-300">{item}</p>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-20 text-center animate-fadeInUp">
-            <p className="text-gray-300 mb-4">
-              Já trabalhamos com empresas como <strong>4Intelligence, OI, Frimesa, XCMG, SICOOB, Inatel</strong> e muitas outras.
+      {/* Pizza Analogy Section */}
+      <section id="pizza" ref={pizzaRef} className="py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 animate-fadeInUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              A Analogia da{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Pizza 🍕
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300">
+              O Erro Mais Comum em Projetos de IA Explicado com... Pizza
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20 animate-fadeInUp">
+              <div className="text-center mb-8">
+                <div className="text-6xl mb-4">🍕</div>
+              </div>
+              
+              <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+                <p>
+                  Imagine uma IA responsável por identificar fatias com calabresa em uma pizza com 100 sabores. 
+                  Mas... calabresa moída vale? E presunto moído? Peperoni é calabresa?
+                </p>
+                
+                <p>
+                  Como se trata de um software probabilístico, ela consome muitos tokens e por vezes traz resultados incorretos.
+                </p>
+                
+                <div className="bg-blue-900/20 rounded-xl p-6 border border-blue-500/20">
+                  <p className="font-semibold text-blue-400 mb-4">A Solução AYTT:</p>
+                  <p>
+                    Quando dividimos a pizza de 100 sabores em várias pizzas de 2 sabores, aumentamos a complexidade da 
+                    arquitetura do software mas simplificamos muito a complexidade da tarefa atribuída à IA (agentes super especializados).
+                  </p>
+                </div>
+                
+                <p className="text-center font-semibold text-green-400">
+                  Com isso, aumentamos a taxa de acerto reduzindo o custo do processamento.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" ref={pricingRef} className="py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+      {/* Practical Solutions Section */}
+      <section id="practical" ref={practicalRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Planos{" "}
+              Soluções Práticas com{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Flexíveis
-              </span>{" "}
-              para Seu Negócio
+                IA
+              </span>
             </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Cada empresa tem necessidades diferentes. Vamos conversar sobre seu projeto específico.
+          </div>
+
+          <div className="space-y-12">
+            {practicalSolutions.map((solution, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 animate-fadeInUp"
+                style={{ animationDelay: `${0.2 * index}s` }}
+              >
+                <div className="flex items-center mb-6">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 mr-4">
+                    {solution.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold">{solution.title}</h3>
+                </div>
+                
+                <div className="grid lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-blue-400">Funcionalidades:</h4>
+                    <div className="space-y-3">
+                      {solution.features.map((feature, i) => (
+                        <div key={i} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                          <p className="text-gray-300 text-sm">{feature}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {solution.example && (
+                    <div>
+                      <h4 className="text-lg font-semibold mb-4 text-blue-400">Exemplo de Conversa:</h4>
+                      <div className="bg-black/40 rounded-xl p-4 space-y-3">
+                        <div className="bg-blue-600 rounded-lg p-3 text-sm">
+                          <strong>Bot:</strong> {solution.example.bot}
+                        </div>
+                        <div className="bg-gray-600 rounded-lg p-3 text-sm">
+                          <strong>Usuário:</strong> {solution.example.user}
+                        </div>
+                        <div className="bg-blue-600 rounded-lg p-3 text-sm">
+                          <strong>Bot:</strong> {solution.example.response}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Services Section */}
+      <section id="additional" ref={additionalRef} className="py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 animate-fadeInUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Serviços{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Adicionais
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+              Além da solução, oferecemos o apoio necessário para que a IA funcione de verdade no seu negócio
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {plans.map((plan, index) => (
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {additionalServices.map((service, index) => (
               <div
                 key={index}
-                className={`bg-white/5 backdrop-blur-sm rounded-2xl p-8 border transition-all animate-fadeInUp ${
-                  plan.popular ? "border-blue-500 relative shadow-xl shadow-blue-500/20" : "border-white/10"
-                }`}
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 animate-fadeInUp"
+                style={{ animationDelay: `${0.3 * index}s` }}
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                    <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-medium px-4 py-1 rounded-full">
-                      Mais Popular
-                    </span>
+                <div className="flex items-center mb-6">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 mr-4">
+                    {service.icon}
                   </div>
-                )}
-
-                <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold mb-4">{plan.name}</h3>
-                  <div className="text-2xl font-bold text-gray-400 mb-2">Sob Consulta</div>
-                  <p className="text-gray-400">{plan.description}</p>
+                  <h3 className="text-2xl font-bold">{service.title}</h3>
                 </div>
-
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-full p-1 mr-3 mt-1">
-                        <Check className="h-3 w-3 text-white" />
-                      </div>
-                      <span className="text-sm">{feature}</span>
-                    </li>
+                
+                <div className="space-y-4">
+                  {service.services.map((item, i) => (
+                    <div key={i} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <p className="text-gray-300">{item}</p>
+                    </div>
                   ))}
-                </ul>
-
-                <button
-                  className={`w-full py-3 rounded-xl font-medium transition-all ${
-                    plan.popular
-                      ? "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white"
-                      : "bg-white/10 hover:bg-white/20 text-white"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ready Section */}
+      <section id="ready" ref={readyRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 animate-fadeInUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Você Está Pronto{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
+                Se...
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {readyChecklist.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 text-center animate-fadeInUp"
+                style={{ animationDelay: `${0.1 * index}s` }}
+              >
+                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-3 w-14 h-14 flex items-center justify-center mx-auto mb-4">
+                  {item.icon}
+                </div>
+                <p className="text-gray-300 text-sm">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-8 animate-fadeInUp delay-800">
+            <h3 className="text-2xl font-bold mb-4 text-green-400">
+              A boa notícia?
+            </h3>
+            <p className="text-xl text-gray-300">
+              Automatizar pode ser simples — se for feito do jeito certo.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-24 relative bg-gradient-to-b from-black via-gray-900/20 to-blue-900/20">
+      <section id="contact" ref={contactRef} className="py-24 relative bg-gradient-to-b from-blue-900/30 via-blue-900/40 to-black/90">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Pronto para Automatizar{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Sem Enrolação?</span>
+              Pronto para Automatizar com IA{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Sem Dor de Cabeça?</span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-              Se você quer IA que funciona de verdade - não PowerPoint colorido - vamos conversar.<br />
-              <strong>Nossa promessa é simples:</strong> você terá um squad dedicado que entende seu negócio.
+              Agende uma reunião conosco e implemente IA na prática, com um time que fala a língua do seu negócio
             </p>
           </div>
 
@@ -813,11 +1024,11 @@ export default function Home() {
                   <div>
                     <p className="text-gray-400 mb-2">WhatsApp</p>
                     <a
-                      href="https://wa.me/5543991923676"
+                      href="https://wa.me/5543999108255"
                       target="_blank"
                       className="text-lg font-medium hover:text-blue-400 transition-colors"
                     >
-                      (43) 99192-3676
+                      (43) 99910-8255
                     </a>
                   </div>
 
@@ -854,36 +1065,24 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 relative bg-gradient-to-b from-blue-900/20 via-blue-900/30 to-black/90">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Está Pronto para Automatizar{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">Sem Dor de Cabeça?</span>
-            </h2>
-            <p className="text-gray-300 mb-8 text-lg">
-              IA na prática, com gente que fala sua língua.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="text-center mt-16 animate-fadeInUp">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link
-                href="https://wa.me/5543991923676"
+                href="https://wa.me/5543999108255"
                 target="_blank"
                 className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-8 py-4 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center"
               >
-                Falar no WhatsApp
+                💬 Agendar Reunião Gratuita
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
 
               <Link
-                href="#contact"
+                href="https://instagram.com/aytt.tech"
+                target="_blank"
                 className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-medium transition-all flex items-center justify-center"
               >
-                Agendar Reunião
+                📱 Seguir no Instagram
               </Link>
             </div>
           </div>
@@ -893,94 +1092,34 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-16 bg-gradient-to-b from-black/90 to-black border-t border-white/10">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <div>
-              <div className="flex items-center mb-8">
-                <Image
-                  src="/logo.png"
-                  alt="AYTT - Assemble Your Tech Team"
-                  width={150}
-                  height={60}
-                  className="h-10 w-auto"
-                />
-              </div>
-
-              <p className="text-gray-400 mb-6">
-                Traduzindo a complexidade da IA em soluções claras e aplicáveis para empresas.
-              </p>
-
-              <div className="flex space-x-4">
-                <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="https://wa.me/5543991923676" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
-                  <MessageCircle className="h-5 w-5" />
-                </a>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-8">
+              <div className="text-2xl font-bold">
+                <span className="text-blue-400">AYTT</span>
+                <span className="text-gray-400 text-sm ml-2">Assemble Your Tech Team</span>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Serviços</h3>
-              <ul className="space-y-4">
-                <li>
-                  <span className="text-gray-400">Alocação de Squads IA</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Automação de Processos</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">SDR Inteligente</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Consultoria em IA</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Soluções</h3>
-              <ul className="space-y-4">
-                <li>
-                  <span className="text-gray-400">Chatbots Inteligentes</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Análise de Dados</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Automação Comercial</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Integração de Sistemas</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Contato</h3>
-              <ul className="space-y-4">
-                <li>
-                  <a href="https://wa.me/5543991923676" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    WhatsApp: (43) 99192-3676
-                  </a>
-                </li>
-                <li>
-                  <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    Instagram: @aytt.tech
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} AYTT - Assemble Your Tech Team. Todos os direitos reservados.
+            <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+              Transformando complexidade em resultado. A tecnologia deveria simplificar, não complicar.
             </p>
 
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <span className="text-gray-500 text-sm">
+            <div className="flex justify-center space-x-6 mb-8">
+              <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a href="https://wa.me/5543999108255" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <MessageCircle className="h-6 w-6" />
+              </a>
+            </div>
+
+            <div className="border-t border-white/10 pt-8">
+              <p className="text-gray-500 text-sm">
+                © {new Date().getFullYear()} AYTT - Assemble Your Tech Team. Todos os direitos reservados.
+              </p>
+              <p className="text-gray-500 text-sm mt-2">
                 Clareza • Transparência • Resultado
-              </span>
+              </p>
             </div>
           </div>
         </div>
@@ -988,3 +1127,22 @@ export default function Home() {
     </div>
   )
 }
+
+// Componente Scale que estava faltando
+function Scale({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+    </svg>
+  )
+}
+
+// Componente User que estava faltando
+function User({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+  )
+}
+
