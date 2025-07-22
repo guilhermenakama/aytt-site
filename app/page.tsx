@@ -27,8 +27,9 @@ import {
   MessageCircle,
   Clock,
   TrendingUp,
-  Shuffle,
+  TrendingDown,
   DollarSign,
+  Shuffle,
   FileText,
   Calendar,
   Star,
@@ -63,7 +64,6 @@ import {
   Repeat,
   Gauge,
   Zap as ZapIcon,
-  TrendingDown,
   Coffee,
   Smile
 } from "lucide-react"
@@ -139,10 +139,10 @@ export default function Home() {
   ]
 
   const urgencyIndicators = [
-    { icon: <Scale className="h-8 w-8" />, text: "A pressão por eficiência e redução de custos está aumentando" },
-    { icon: <Brain className="h-8 w-8" />, text: "Seus concorrentes já estão usando IA" },
-    { icon: <Zap className="h-8 w-8" />, text: "Decisões precisam ser mais rápidas e assertivas" },
-    { icon: <Award className="h-8 w-8" />, text: "É hora de ganhar vantagem competitiva" },
+    { icon: <TrendingDown className="h-8 w-8" />, text: "Suas margens estão sendo pressionadas pela concorrência" },
+    { icon: <Clock className="h-8 w-8" />, text: "Cada mês sem automação é dinheiro perdido" },
+    { icon: <AlertTriangle className="h-8 w-8" />, text: "Processos manuais limitam seu crescimento" },
+    { icon: <Target className="h-8 w-8" />, text: "Quem automatizar primeiro domina o mercado" },
   ]
 
   const founders = [
@@ -400,12 +400,15 @@ export default function Home() {
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fadeInUp delay-500">
-              Imagine Investir{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Meses em um Projeto de IA
-              </span>{" "}
-              e...
+              Cansado de Projetos de IA que{" "}
+              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
+                Não Saem do Papel?
+              </span>
             </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fadeInUp delay-700">
+              <strong>Se você já investiu meses em um projeto de IA e...</strong>
+            </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
               {painPoints.map((point, index) => (
@@ -428,20 +431,20 @@ export default function Home() {
               Essa situação te soa familiar?
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-1400">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-900">
               <Link
-                href="#urgency"
+                href="https://wa.me/5543999108255?text=Olá! Sou diretor/dono de empresa e gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
+                target="_blank"
                 className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-8 py-4 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center"
               >
-                Conhecer a AYTT
+                💬 Quero Reduzir Custos com IA
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
-                href="https://wa.me/5543999108255"
-                target="_blank"
+                href="#ready"
                 className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-medium transition-all flex items-center justify-center"
               >
-                WhatsApp
+                📊 Ver Resultados Reais
               </Link>
             </div>
           </div>
@@ -461,13 +464,13 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              O Mercado Está{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                Mudando Rápido
+              Enquanto Você Hesita, Seus{" "}
+              <span className="bg-gradient-to-r from-red-400 to-red-600 text-transparent bg-clip-text">
+                Concorrentes Avançam
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-xl">
-              A Inteligência Artificial já não é mais tendência — é uma decisão estratégica.
+              A IA deixou de ser tendência. Agora é <strong>vantagem competitiva decisiva</strong>.
             </p>
           </div>
 
@@ -898,6 +901,59 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Section - Nova seção para diretores */}
+      <section className="py-24 relative bg-gradient-to-b from-green-900/20 via-green-900/10 to-black">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 animate-fadeInUp">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Resultados{" "}
+              <span className="bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text">
+                Mensuráveis
+              </span>{" "}
+              em 90 Dias
+            </h2>
+            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
+              Nossos clientes veem impacto real no negócio, não apenas tecnologia funcionando.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              { metric: "75%", description: "Redução no tempo de atendimento ao cliente", icon: <Clock className="h-8 w-8" /> },
+              { metric: "60%", description: "Economia em custos operacionais", icon: <DollarSign className="h-8 w-8" /> },
+              { metric: "3x", description: "Aumento na qualificação de leads", icon: <TrendingUp className="h-8 w-8" /> },
+              { metric: "90%", description: "Redução em tarefas repetitivas", icon: <Zap className="h-8 w-8" /> }
+            ].map((result, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-8 border border-green-500/20 text-center animate-fadeInUp"
+                style={{ animationDelay: `${0.1 * index}s` }}
+              >
+                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-4 w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  {result.icon}
+                </div>
+                <div className="text-3xl font-bold text-green-400 mb-2">{result.metric}</div>
+                <p className="text-gray-300 text-sm">{result.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-8 md:p-12 border border-green-500/20 animate-fadeInUp delay-800">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-6 text-green-400">
+                Investimento que se Paga
+              </h3>
+              <p className="text-xl text-gray-300 mb-6">
+                ROI médio de <strong className="text-green-400">300%</strong> no primeiro ano
+              </p>
+              <p className="text-gray-400">
+                Enquanto consultorias cobram por hora, nós entregamos valor mensurável para seu negócio.
+              </p>
+            </div>
           </div>
         </div>
       </section>

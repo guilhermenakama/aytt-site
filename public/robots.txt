@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aytt.tech/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin or private areas (if any in the future)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /#urgency
+Allow: /#philosophy
+Allow: /#founders
+Allow: /#solutions
+Allow: /#team
+Allow: /#challenge
+Allow: /#contact
+
