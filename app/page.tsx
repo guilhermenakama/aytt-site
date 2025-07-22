@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -132,7 +130,7 @@ export default function Home() {
     { icon: <TrendingUp className="h-6 w-6" />, text: "O resultado final não atende às expectativas" },
     { icon: <Shuffle className="h-6 w-6" />, text: "O escopo mudou várias vezes e nada ficou claro" },
     { icon: <MessageCircle className="h-6 w-6" />, text: "A comunicação foi falha e sem alinhamento com o negócio" },
-    { icon: <DollarSign className="h-6 w-6" />, text: "Você precisa lidar com o prejuízo" },
+    { icon: <DollarSign className="h-6 w-6" />, text: "No fim, é você quem precisa lidar com o prejuízo" },
   ]
 
   const urgencyIndicators = [
@@ -177,15 +175,15 @@ export default function Home() {
   { name: "Hitachi", file: "hitachi.png" },
   { name: "Indusbello", file: "indusbello.png" },
   { name: "Advise", file: "advise.png" },
-  { name: "OAB Londrina", file: "oab-londrina.jpeg" },
+  { name: "OAB Londrina", file: "oab-londrina.png" },
   { name: "Inatel", file: "inatel.png" },
-  { name: "Eccosave", file: "eccosave.jpeg" },
+  { name: "Eccosave", file: "eccosave.png" },
   { name: "Leucotron Tech", file: "leucotron-tech.png" },
   { name: "Inatel Startups", file: "inatel-startups.png" },
   { name: "ConsultoMAQ", file: "consultomaq.png" },
-  { name: "SMH", file: "smh.jpeg" },
+  { name: "SMH", file: "smh.png" },
   { name: "EVVAS", file: "evvas.png" },
-  { name: "Life Nutri", file: "life-nutri.jpeg" },
+  { name: "Life Nutri", file: "life-nutri.png" },
   { name: "ISCAL", file: "iscal.png" },
 ];
 
@@ -332,9 +330,15 @@ export default function Home() {
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center">
-            <div className="text-2xl font-bold">
-              <span className="text-blue-400">AYTT</span>
-              <span className="text-gray-400 text-sm ml-2">Assemble Your Tech Team</span>
+            <div className="flex items-center space-x-2">
+              <Image
+                src="/logos/aytt.png"
+                alt="Logo AYTT"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+              />
+              <span className="text-gray-400 text-sm hidden sm:inline">Assemble Your Tech Team</span>
             </div>
           </div>
 
@@ -440,7 +444,7 @@ export default function Home() {
             </div>
 
             <p className="text-2xl md:text-3xl font-semibold mb-8 text-red-400 animate-fadeInUp delay-1200">
-              Essa situação te soa familiar?
+              Essas situações te soam familiares?
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-900">
@@ -451,12 +455,6 @@ export default function Home() {
               >
                 💬 Quero Reduzir Custos com IA
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="#ready"
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-full font-medium transition-all flex items-center justify-center"
-              >
-                📊 Ver Resultados Reais
               </Link>
             </div>
           </div>
@@ -474,7 +472,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-xl">
-              A IA deixou de ser tendência. Agora é uma<strong>decisão estratégica</strong>.
+              A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>. Se você sente que...
             </p>
           </div>
 
@@ -497,7 +495,7 @@ export default function Home() {
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Então é o momento de você conhecer a{" "}
               <Image
-                src="/logo.png"
+                src="/public/aytt.png"
                 alt="AYTT"
                 width={100}
                 height={40}
@@ -577,16 +575,13 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {companyLogos.map((logo, index) => (
-                <div
-                  key={index}
-                  className="bg-white/5 backdrop-blur-sm rounded-lg p-4 text-center border border-white/10 hover:border-blue-500/30 transition-all"
-                >
+                <div className="bg-white rounded-lg p-4 text-center border border-white/10 shadow-md h-[100px] flex items-center justify-center">
                   <Image
                     src={`/logos/${logo.file}`}
                     alt={logo.name}
-                    width={100}
-                    height={50}
-                    className="object-contain mx-auto h-10"
+                    width={120}
+                    height={60}
+                    className="object-contain max-h-12"
                   />
                 </div>
               ))}
