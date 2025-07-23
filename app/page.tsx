@@ -172,29 +172,29 @@ export default function Home() {
   ]
 
   const urgencyIndicators = [
-    { icon: <TrendingDown className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Suas margens estão sendo pressionadas pela concorrência" },
-    { icon: <Clock className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Cada mês sem automação é dinheiro perdido" },
-    { icon: <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Processos manuais limitam seu crescimento" },
-    { icon: <Target className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Quem automatizar primeiro domina o mercado" },
+    { icon: <TrendingDown className="h-6 w-6 sm:h-8 sm:w-8" />, text: "A pressão por eficiência e redução de custos está aumentando" },
+    { icon: <Clock className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Decisões precisam ser mais rápidas e assertivas" },
+    { icon: <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Seus concorrentes já estão usando IA " },
+    { icon: <Target className="h-6 w-6 sm:h-8 sm:w-8" />, text: "É hora de ganhar vantagem competitiva" },
   ]
 
   const founders = [
-        {
+    {
       name: "Rodolfo Spigai",
       role: "Sócio Fundador",
-      description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
+      description: "Advogado empresarial com 25 anos de experiência, sócio fundador de três empresas (VAR Business Beyond, Caetano de Paula Advogados e AYTT). Especialista reconhecido em LGPD e Direito Digital. Ex-investidor anjo e mentor ativo em hubs de inovação e incubadoras. Expertise sólida em Compliance e Administração Empresarial, trazendo visão jurídica e estratégica para projetos de tecnologia.",
       image: "/rodolfo-profile-pic.png"
     },
     {
       name: "Ronaldo Sirosse",
       role: "Sócio Fundador",
-      description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
+      description: "Engenheiro Elétrico (Inatel) com mais de 10 anos liderando desenvolvimento de software e Segurança da Informação. Ex-Executivo do Inatel Competence Center, onde liderou equipes de até 100 profissionais em projetos para gigantes como Ericsson e Qualcomm. Especialista em certificações MPS.BR e gestão de processos. Combina experiência técnica robusta com liderança em projetos de grande escala.",
       image: "/ronaldo-profile-pic.png"
     },
     {
       name: "Guilherme Nakama",
       role: "Sócio Fundador",
-      description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
+      description: "Co-fundador do INSPER AI e sócio fundador da AYTT, focado em traduzir complexidade tecnológica em soluções práticas de IA para empresas. Estudante de Engenharia da Computação no INSPER, cresceu em ambiente empresarial familiar, desenvolvendo visão única sobre como a tecnologia impacta operações reais. Atua como ponte entre inovação técnica e necessidades concretas de negócio.",
       image: "/guilherme-profile-pic.png"
     }
   ]
@@ -409,7 +409,7 @@ export default function Home() {
             <div className="flex items-center space-x-2">
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden transform hover:scale-110 transition-transform duration-300">
                 <img
-                  src="/aytt.png"
+                  src="public/logos/aytt.png"
                   alt="AYTT Logo"
                   className="w-full h-full object-contain"
                 />
@@ -536,7 +536,7 @@ export default function Home() {
                 target="_blank"
                 className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2 group"
               >
-                💬 Quero Reduzir Custos com IA
+                Quero Implementar IA na Minha Empresa
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
             </div>
@@ -560,8 +560,11 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl px-4">
-              A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
-              Se você sente que...
+              A Inteligência Artificial deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
+              <br />
+              <span className="block mt-4 font-semibold text-white">
+                Se você sente que...
+              </span>
             </p>
           </div>
 
@@ -602,12 +605,13 @@ export default function Home() {
 
             <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
               <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
-                Não vendemos soluções mágicas. Oferecemos pessoas qualificadas, processos claros e comunicação honesta. 
-                Porque inovação de verdade acontece quando há confiança mútua e expectativas alinhadas.
+                Aristóteles chamava de <em>phronesis</em> — a sabedoria prática que equilibra conhecimento técnico com bom senso humano.
+              </p>
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
+                Não buscamos extremos: nem a paralisia da complexidade, nem a ilusão da simplicidade absoluta. Nosso foco é o meio-termo virtuoso entre inovação e prudência, entre ambição tecnológica e viabilidade real.
               </p>
               <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
-                Enquanto o mercado fala em revolução, nós falamos em evolução. Construímos mudanças sustentáveis, 
-                respeitando o ritmo e a cultura de cada empresa.
+                Porque a excelência não está em fazer o mais complexo possível, mas em fazer exatamente o que precisa ser feito.
               </p>
             </div>
           </div>
@@ -705,11 +709,22 @@ export default function Home() {
 
           <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
             <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400 animate-pulse">
-              Vantagem Competitiva
+              A Vantagem para o Seu Negócio:
             </h3>
             <p className="text-lg sm:text-xl text-gray-300">
-              Soluções personalizadas para o seu negócio, sem escopo engessado
+              Soluções personalizadas para a sua empresa, sem escopo engessado - seu projeto cresce e se adapta conforme você descobre novas necessidades
             </p>
+          </div>
+          
+          <div className="text-center animate-on-scroll">
+            <a
+              href="https://wa.me/5543999108255"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30"
+            >
+              Quero desenvolver automações com IA para minha empresa
+            </a>
           </div>
         </div>
       </section>
@@ -890,23 +905,6 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  
-                  {solution.example && (
-                    <div>
-                      <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Exemplo de Conversa:</h4>
-                      <div className="bg-black/40 rounded-xl p-3 sm:p-4 space-y-2 sm:space-y-3 transform hover:scale-105 transition-transform duration-300">
-                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
-                          <strong>Bot:</strong> {solution.example.bot}
-                        </div>
-                        <div className="bg-gray-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
-                          <strong>Usuário:</strong> {solution.example.user}
-                        </div>
-                        <div className="bg-blue-600 rounded-lg p-2 sm:p-3 text-xs sm:text-sm transform hover:scale-105 transition-transform duration-300">
-                          <strong>Bot:</strong> {solution.example.response}
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
