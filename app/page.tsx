@@ -512,7 +512,7 @@ export default function Home() {
                   style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                 >
                   <div className="flex items-start">
-                    <div className="text-red-400 mr-3 mt-1 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    <div className="text-red-400 mr-3 mt-1 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
                       {point.icon}
                     </div>
                     <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{point.text}</p>
@@ -566,7 +566,7 @@ export default function Home() {
                 className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 text-center transform hover:scale-105 hover:-translate-y-4 transition-all duration-500 animate-on-scroll group cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 sm:p-4 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 sm:p-4 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
                   {indicator.icon}
                 </div>
                 <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{indicator.text}</p>
@@ -628,7 +628,7 @@ export default function Home() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-blue-500 shadow-lg transform group-hover:scale-110 transition-all duration-300">
                     <img
                       src={founder.image}
                       alt={`Foto de ${founder.name}`}
@@ -689,7 +689,7 @@ export default function Home() {
                 className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-blue-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
                   {differential.icon}
                 </div>
                 <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{differential.text}</p>
@@ -728,7 +728,7 @@ export default function Home() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
                     {role.icon}
                   </div>
                   <div>
@@ -801,7 +801,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
             <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
-                <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3 transform group-hover:rotate-12 transition-transform duration-300" />
+                <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-red-400">Arquitetura Simples</h3>
               </div>
               
@@ -823,7 +823,7 @@ export default function Home() {
 
             <div className="bg-green-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-green-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
-                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mr-3 transform group-hover:rotate-12 transition-transform duration-300" />
+                <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-green-400">Arquitetura Robusta (AYTT)</h3>
               </div>
               
@@ -858,7 +858,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="space-y-8 sm:space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             {practicalSolutions.map((solution, index) => (
               <div
                 key={index}
@@ -866,13 +866,13 @@ export default function Home() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
                     {solution.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{solution.title}</h3>
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-6 sm:space-y-8">
                   <div>
                     <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Funcionalidades:</h4>
                     <div className="space-y-2 sm:space-y-3">
@@ -931,7 +931,7 @@ export default function Home() {
                 style={{ animationDelay: `${index * 0.3}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{service.title}</h3>
@@ -970,7 +970,7 @@ export default function Home() {
                 className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-green-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
                   {item.icon}
                 </div>
                 <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{item.text}</p>
@@ -1173,9 +1173,9 @@ export default function Home() {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-30px) rotate(120deg); }
-          66% { transform: translateY(-60px) rotate(240deg); }
+          0%, 100% { transform: translateY(0px); }
+          33% { transform: translateY(-30px); }
+          66% { transform: translateY(-60px); }
         }
         
         @keyframes slideInUp {
