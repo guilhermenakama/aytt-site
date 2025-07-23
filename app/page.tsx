@@ -611,7 +611,7 @@ export default function Home() {
       </section>
 
       {/* Founders Section */}
-      <section id="founders" ref={foundersRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+      <section id="experience" ref={foundersRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -765,7 +765,7 @@ export default function Home() {
       </section>
 
       {/* Challenge Section */}
-      <section id="challenge" ref={challengeRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+      <section id="challenge" ref={challengeRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-gray-900/40">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -795,33 +795,29 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-       {/* Transition Section */}
-      <section className="py-8 sm:py-12 relative bg-gradient-to-b from-black via-gray-900/20 to-gray-900/40">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center animate-on-scroll">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-blue-400">
-              Como solucionamos esses desafios?
-            </h3>
-            
-            <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
-                Na AYTT, desenvolvemos uma abordagem que separa elementos determinísticos dos probabilísticos, criando arquiteturas modulares com agentes especializados.
-              </p>
+            {/* Transição integrada */}
+            <div className="text-center animate-on-scroll">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-blue-400">
+                Como solucionamos esses desafios?
+              </h3>
               
-              <p className="text-lg sm:text-xl font-semibold text-white">
-                Veja a diferença na prática:
-              </p>
+              <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+                <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
+                  Na AYTT, desenvolvemos uma abordagem que separa elementos determinísticos dos probabilísticos, criando arquiteturas modulares com agentes especializados.
+                </p>
+                
+                <p className="text-lg sm:text-xl font-semibold text-white">
+                  Veja a diferença na prática:
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Architecture Section */}
-      <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+      <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-gray-900/40 via-black to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -832,7 +828,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto mb-16 sm:mb-20 md:mb-24 lg:mb-28">
             <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
                 <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
@@ -878,7 +874,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 mb-24 sm:mb-32 animate-on-scroll">
+          <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 mb-28 sm:mb-32 md:mb-36 lg:mb-40 animate-on-scroll">
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
               Veja algumas aplicações práticas, pensadas para gerar <strong className="text-white">valor real no dia a dia da sua empresa.</strong>
             </p>
@@ -887,7 +883,7 @@ export default function Home() {
       </section>
 
       {/* Practical Solutions Section */}
-      <section id="practical" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
+      <section id="methodology" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
