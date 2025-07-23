@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import CookieBanner from './cookie-banner'
+import { PoliticaPrivacidade } from './politica-privacidade'
 import {
   ChevronDown,
   ArrowRight,
@@ -75,6 +77,7 @@ export default function Home() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
 
   const heroRef = useRef<HTMLElement>(null)
   const urgencyRef = useRef<HTMLElement>(null)
@@ -93,6 +96,8 @@ export default function Home() {
   const [visibleElements, setVisibleElements] = useState(new Set())
 
   useEffect(() => {
+    const handleOpenPrivacy = () => setShowPrivacyPolicy(true)
+
     const handleScroll = () => {
       const newScrollY = window.scrollY
       setScrollY(newScrollY)
@@ -129,6 +134,7 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener('openPrivacyPolicy', handleOpenPrivacy)
 
     // Intersection Observer para animações
     const observer = new IntersectionObserver(
@@ -152,6 +158,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener('openPrivacyPolicy', handleOpenPrivacy)
       observer.disconnect()
     }
   }, [])
@@ -1203,6 +1210,27 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Cookie Banner */}
+      <CookieBanner />
+
+      {/* Modal da Política */}
+      {showPrivacyPolicy && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-black border border-white/20 rounded-lg max-w-4xl max-h-[80vh] overflow-y-auto">
+            <div className="sticky top-0 bg-black border-b border-white/20 p-4 flex justify-between items-center">
+              <h2 className="text-xl font-bold">Política de Privacidade</h2>
+              <button 
+                onClick={() => setShowPrivacyPolicy(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+            <PoliticaPrivacidade />
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes float {
