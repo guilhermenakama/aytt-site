@@ -672,7 +672,7 @@ export default function Home() {
       </section>
 
       {/* Solutions Section */}
-      <section id="solutions" ref={solutionsRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
+      <section id="methodology" ref={solutionsRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -883,7 +883,7 @@ export default function Home() {
       </section>
 
       {/* Practical Solutions Section */}
-      <section id="methodology" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
+      <section id="solutions" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
