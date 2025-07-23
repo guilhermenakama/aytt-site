@@ -799,6 +799,27 @@ export default function Home() {
         </div>
       </section>
 
+       {/* Transition Section */}
+      <section className="py-8 sm:py-12 relative bg-gradient-to-b from-black via-gray-900/20 to-gray-900/40">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center animate-on-scroll">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-blue-400">
+              Como solucionamos esses desafios?
+            </h3>
+            
+            <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
+                Na AYTT, desenvolvemos uma abordagem que separa elementos determinísticos dos probabilísticos, criando arquiteturas modulares com agentes especializados.
+              </p>
+              
+              <p className="text-lg sm:text-xl font-semibold text-white">
+                Veja a diferença na prática:
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Architecture Section */}
       <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
         <div className="container mx-auto px-4 sm:px-6">
@@ -857,7 +878,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16 animate-on-scroll">
+          <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 mb-24 sm:mb-32 animate-on-scroll">
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
               Veja algumas aplicações práticas, pensadas para gerar <strong className="text-white">valor real no dia a dia da sua empresa.</strong>
             </p>
