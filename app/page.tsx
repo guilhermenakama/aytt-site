@@ -174,7 +174,7 @@ export default function Home() {
   const urgencyIndicators = [
     { icon: <TrendingDown className="h-6 w-6 sm:h-8 sm:w-8" />, text: "A pressão por eficiência e redução de custos está aumentando" },
     { icon: <Clock className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Decisões precisam ser mais rápidas e assertivas" },
-    { icon: <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Seus concorrentes já estão usando IA " },
+    { icon: <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8" />, text: "Seus concorrentes já estão usando Inteligência Artificial " },
     { icon: <Target className="h-6 w-6 sm:h-8 sm:w-8" />, text: "É hora de ganhar vantagem competitiva" },
   ]
 
@@ -204,7 +204,7 @@ export default function Home() {
     { name: "Frimesa", file: "frimesa.png" },
     { name: "XCMG", file: "xcmg.png" },
     { name: "XCMG Bank", file: "xcmg-bank.png" },
-    { name: "Gazin", file: "gazin.png" },
+    { name: "Gazin", file: "gazin-logo.png" },
     { name: "Sicoob", file: "sicoob.png" },
     { name: "Unimed", file: "unimed.png" },
     { name: "OI", file: "oi.png" },
@@ -408,9 +408,11 @@ export default function Home() {
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden transform hover:scale-110 transition-transform duration-300">
-                <img
-                  src="public/logos/aytt.png"
+                <Image
+                  src="/logos/aytt.png"
                   alt="AYTT Logo"
+                  width={64}
+                  height={64}
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -560,7 +562,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl px-4">
-              A Inteligência Artificial deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
+              A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
               <br />
               <span className="block mt-4 font-semibold text-white">
                 Se você sente que...
@@ -716,14 +718,14 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="text-center animate-on-scroll">
+          <div className="mt-12 text-center">
             <a
-              href="https://wa.me/5543999108255"
+              href="https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300"
             >
-              Quero desenvolver automações com IA para minha empresa
+              Quero desenvolver uma automação com IA para minha empresa
             </a>
           </div>
         </div>
@@ -864,6 +866,12 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <div className="text-center max-w-3xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16 animate-on-scroll">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
+              Veja algumas aplicações práticas, pensadas para gerar <strong className="text-white">valor real no dia a dia da sua empresa.</strong>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -960,11 +968,14 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
-              Você Está Pronto{" "}
+              Como saber se é o momento certo{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-gradient-x">
-                Se...
+                para ter um time de IA?
               </span>
             </h2>
+            <p className="text-lg sm:text-xl text-gray-300 mt-2">
+              Você está pronto se...
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -990,6 +1001,16 @@ export default function Home() {
               Automatizar pode ser simples — se for feito do jeito certo.
             </p>
           </div>
+
+          <div className="text-center mt-8 animate-on-scroll">
+            <a
+              href="https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-green-500/25 transform hover:scale-105"
+            >
+              Estou pronto para automatizar com IA
+            </a>
         </div>
       </section>
 
@@ -1074,7 +1095,7 @@ export default function Home() {
                   <div>
                     <p className="text-gray-400 mb-2 text-sm sm:text-base">WhatsApp</p>
                     <a
-                      href="https://wa.me/5543999108255"
+                      href="https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
                       target="_blank"
                       className="text-base sm:text-lg font-medium hover:text-blue-400 transition-all duration-300 transform hover:scale-105 inline-block"
                     >
@@ -1119,11 +1140,11 @@ export default function Home() {
           <div className="text-center mt-12 sm:mt-16 animate-on-scroll">
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 sm:mb-8 px-4">
               <Link
-                href="https://wa.me/5543999108255"
+                href="https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
                 target="_blank"
                 className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2 group"
               >
-                💬 Agendar Reunião Gratuita
+                Agendar Reunião
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
 
