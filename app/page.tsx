@@ -62,7 +62,8 @@ import {
   Repeat,
   Gauge,
   Coffee,
-  Smile
+  Smile,
+  LayoutList
 } from "lucide-react"
 
 export default function Home() {
@@ -178,13 +179,7 @@ export default function Home() {
   ]
 
   const founders = [
-    {
-      name: "Guilherme Nakama",
-      role: "Sócio Fundador",
-      description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
-      image: "/guilherme-profile-pic.png"
-    },
-    {
+        {
       name: "Rodolfo Spigai",
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond, Caetano de Paula Advogados e AYTT. 25 anos de advocacia empresarial. Especialista em LGPD, Direito Digital, Administração, Compliance. Ex-investidor de holding de capital anjo, mentor em hubs de inovação.",
@@ -195,6 +190,12 @@ export default function Home() {
       role: "Sócio Fundador",
       description: "Sócio fundador da VAR Business Beyond e AYTT. 10+ anos desenvolvimento de software e Segurança da Informação. Graduado Engenharia Elétrica pelo Inatel. Ex-Executivo Inatel Competence Center (liderou equipes de até 100 profissionais). Projetos para Ericsson e Qualcomm, certificações MPS.BR.",
       image: "/ronaldo-profile-pic.png"
+    },
+    {
+      name: "Guilherme Nakama",
+      role: "Sócio Fundador",
+      description: "Sócio fundador da AYTT, focado em soluções práticas de IA e automação. Estudante de Engenharia da Computação no INSPER e co-fundador do INSPER AI. Experiência na interface entre complexidade tecnológica e desafios empresariais. Cresceu em ambiente de empresa familiar, visão sobre impactos da tecnologia na operação diária.",
+      image: "/guilherme-profile-pic.png"
     }
   ]
 
@@ -285,11 +286,6 @@ export default function Home() {
         "Pré-qualificação de Leads: Classifica com critérios predefinidos",
         "Agendamento de Reuniões: Marca reuniões quando há interesse"
       ],
-      example: {
-        bot: "Oi, aqui é a Bia da AYTT! Como posso te ajudar? 😄",
-        user: "Oi, como funciona a alocação de times de IA de vocês?",
-        response: "Ótima pergunta! Nós montamos um time completo para a sua empresa!"
-      },
       icon: <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8" />
     },
     {
@@ -311,7 +307,7 @@ export default function Home() {
       icon: <FileSearch className="h-6 w-6 sm:h-8 sm:w-8" />
     },
     {
-      title: "LEITURA DE DOCUMENTOS",
+      title: "LEITURA DE BOLETOS E NOTAS FISCAIS",
       features: [
         "Boletos: Extração de dados, classificação de contas, padronização",
         "Notas Fiscais: Captura informações, categorização, padronização",
@@ -327,6 +323,15 @@ export default function Home() {
         "Esclarecimento de dúvidas de produtos"
       ],
       icon: <Instagram className="h-6 w-6 sm:h-8 sm:w-8" />
+    },
+    {
+      title: "LEITURA DE PEDIDOS DE COMPRA",
+      features: [
+        "Extração automática de dados essenciais como produto, quantidade e valor",
+        "Classificação por fornecedor, tipo de produto e prioridade",
+        "Padronização e validação para integração com ERPs e automações"
+      ],
+      icon: <LayoutList className="h-6 w-6 sm:h-8 sm:w-8" />
     }
   ]
 
@@ -522,7 +527,7 @@ export default function Home() {
             </div>
 
             <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4 animate-slideInUp animate-pulse" style={{ animationDelay: '1.2s' }}>
-              Essas situações te soam familiares?
+              Você já passou por algo assim?
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 animate-slideInUp" style={{ animationDelay: '1.5s' }}>
@@ -555,7 +560,8 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl px-4">
-              A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>. Se você sente que...
+              A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
+              Se você sente que...
             </p>
           </div>
 
