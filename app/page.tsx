@@ -105,16 +105,10 @@ export default function Home() {
 
       const sections = [
         { id: "home", ref: heroRef },
-        { id: "urgency", ref: urgencyRef },
         { id: "philosophy", ref: philosophyRef },
-        { id: "founders", ref: foundersRef },
-        { id: "solutions", ref: solutionsRef },
+        { id: "experience", ref: foundersRef },
         { id: "team", ref: teamRef },
-        { id: "challenge", ref: challengeRef },
-        { id: "architecture", ref: architectureRef },
-        { id: "practical", ref: practicalRef },
-        { id: "additional", ref: additionalRef },
-        { id: "ready", ref: readyRef },
+        { id: "solutions", ref: practicalRef },
         { id: "contact", ref: contactRef },
       ]
 
@@ -421,19 +415,17 @@ export default function Home() {
           </div>
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item) => (
+            {["home", "philosophy", "experience", "team", "solutions", "contact"].map((item) => (
               <Link
                 key={item}
                 href={`#${item}`}
                 className={`text-sm uppercase tracking-wider font-medium transition-all duration-300 hover:text-blue-400 hover:scale-110 ${activeSection === item ? "text-blue-400 scale-110" : "text-gray-300"}`}
               >
                 {item === "home" ? "Início" : 
-                 item === "urgency" ? "Urgência" :
                  item === "philosophy" ? "Filosofia" :
-                 item === "founders" ? "Fundadores" :
-                 item === "solutions" ? "Soluções" :
+                 item === "experience" ? "Experiência" :
                  item === "team" ? "Time" :
-                 item === "challenge" ? "Desafio" :
+                 item === "solutions" ? "Soluções" :
                  item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
             ))}
@@ -465,7 +457,7 @@ export default function Home() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-30 lg:hidden bg-black/95 backdrop-blur-md pt-20 sm:pt-24 transition-all duration-500 ease-out animate-slideInLeft">
           <nav className="container mx-auto px-4 sm:px-6 flex flex-col space-y-6 sm:space-y-8 py-6 sm:py-8">
-            {["home", "urgency", "philosophy", "founders", "solutions", "team", "challenge", "contact"].map((item, index) => (
+            {["home", "philosophy", "experience", "team", "solutions", "contact"].map((item, index) => (
               <Link
                 key={item}
                 href={`#${item}`}
@@ -474,13 +466,11 @@ export default function Home() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>{item === "home" ? "Início" : 
-                       item === "urgency" ? "Urgência" :
-                       item === "philosophy" ? "Filosofia" :
-                       item === "founders" ? "Fundadores" :
-                       item === "solutions" ? "Soluções" :
-                       item === "team" ? "Time" :
-                       item === "challenge" ? "Desafio" :
-                       item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
+                 item === "philosophy" ? "Filosofia" :
+                 item === "experience" ? "Experiência" :
+                 item === "team" ? "Time" :
+                 item === "solutions" ? "Soluções" :
+                 item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
                 <ChevronRight className="h-5 w-5 text-blue-400 transform hover:translate-x-2 transition-transform duration-300" />
               </Link>
             ))}
