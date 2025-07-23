@@ -1011,6 +1011,7 @@ export default function Home() {
             >
               Estou pronto para automatizar com IA
             </a>
+          </div>
         </div>
       </section>
 
