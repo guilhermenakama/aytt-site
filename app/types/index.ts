@@ -60,3 +60,14 @@ export type FooterProps = {
   setShowPrivacyPolicy: (value: boolean) => void;
   setShowConsentTerm: (value: boolean) => void;
 };
+
+export type HeaderProps = {
+  isScrolled: boolean
+  activeSection: SectionId
+  setActiveSection: (sectionId: SectionId) => void
+}
+
+export type NavigationItem = {
+  id: SectionId
+  label: string
+}
