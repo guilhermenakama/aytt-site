@@ -135,29 +135,38 @@ export default function Home() {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
+    // NOVO: Reset do estado
+    setVisibleElements(new Set())
+
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener('openPrivacyPolicy', handleOpenPrivacy)
     window.addEventListener('openConsentTerm', handleOpenConsent)
 
-    // Intersection Observer para animações
+    // NOVO: Observer melhorado
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
             setVisibleElements(prev => new Set([...prev, entry.target.id]))
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
 
-    // Observar todos os elementos com classe 'animate-on-scroll'
-    const animatedElements = document.querySelectorAll('.animate-on-scroll')
-    animatedElements.forEach((el, index) => {
-      el.id = `animated-${index}`
-      observer.observe(el)
-    })
+    // NOVO: Inicialização das animações
+    const initializeAnimations = () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll')
+      animatedElements.forEach((el, index) => {
+        el.classList.remove('visible')
+        el.id = `animated-${index}`
+        observer.observe(el)
+      })
+    }
+
+    const timeoutId = setTimeout(initializeAnimations, 100)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -165,6 +174,7 @@ export default function Home() {
       window.removeEventListener('openPrivacyPolicy', handleOpenPrivacy)
       window.removeEventListener('openConsentTerm', handleOpenConsent)
       observer.disconnect()
+      clearTimeout(timeoutId)
     }
   }, [])
 
@@ -1332,37 +1342,19 @@ export default function Home() {
           opacity: 0;
           transform: translateY(50px);
           transition: all 0.8s ease-out;
+          will-change: opacity, transform;
         }
         
         .animate-on-scroll.visible {
           opacity: 1;
           transform: translateY(0);
         }
+        
+        .animate-on-scroll:not(.visible) {
+          opacity: 0 !important;
+          transform: translateY(50px) !important;
+        }
       `}</style>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          // Intersection Observer for scroll animations
-          const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-          };
-          
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-              }
-            });
-          }, observerOptions);
-          
-          // Observe all elements with animate-on-scroll class
-          document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            animatedElements.forEach(el => observer.observe(el));
-          });
-        `
-      }} />
     </div>
   )
 }
