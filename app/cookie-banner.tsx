@@ -1,28 +1,20 @@
 "use client"
 import { useState, useEffect } from "react"
-import { Shield, ExternalLink } from "lucide-react"
+import { X, Shield, ExternalLink } from "lucide-react"
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    // Garantir que estamos no cliente
-    setIsClient(true)
-
-    // Verificar se o usuário já aceitou os cookies
-    if (typeof window !== "undefined") {
-      const hasAccepted = localStorage.getItem("aytt-cookies-accepted")
-      if (!hasAccepted) {
-        setIsVisible(true)
-      }
+    // Verifica se o usuário já aceitou os cookies
+    const hasAccepted = localStorage.getItem("aytt-cookies-accepted")
+    if (!hasAccepted) {
+      setIsVisible(true)
     }
   }, [])
 
   const handleAccept = () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("aytt-cookies-accepted", "true")
-    }
+    localStorage.setItem("aytt-cookies-accepted", "true")
     setIsVisible(false)
   }
 
@@ -30,8 +22,7 @@ export default function CookieBanner() {
     setIsVisible(false)
   }
 
-  // Não renderizar no servidor
-  if (!isClient || !isVisible) return null
+  if (!isVisible) return null
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-900/95 to-black/95 backdrop-blur-md border-t border-white/20 shadow-2xl animate-slideInUp">
@@ -47,7 +38,7 @@ export default function CookieBanner() {
               <p className="text-gray-300 text-xs sm:text-sm">
                 Utilizamos cookies para melhorar sua experiência. Ao continuar, você aceita nossa{" "}
                 <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("openPrivacyPolicy"))}
+                  onClick={() => window.dispatchEvent(new CustomEvent('openPrivacyPolicy'))}
                   className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 transition-colors duration-300"
                 >
                   Política de Privacidade
@@ -55,7 +46,7 @@ export default function CookieBanner() {
                 </button>{" "}
                 e{" "}
                 <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("openConsentTerm"))}
+                  onClick={() => window.dispatchEvent(new CustomEvent('openConsentTerm'))}
                   className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 transition-colors duration-300"
                 >
                   Termo de Consentimento

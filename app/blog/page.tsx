@@ -97,9 +97,9 @@ export default function BlogPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredPosts.map((post) => (
-                <article key={post.slug} className="group">
+                <article key={post.slug} className="group h-full">
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="card overflow-hidden hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105">
+                    <div className="card overflow-hidden hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105 h-full flex flex-col">
                       <div className="relative h-64 overflow-hidden">
                         <Image
                           src={post.image || "/placeholder.svg"}
@@ -115,13 +115,13 @@ export default function BlogPage() {
                         </div>
                       </div>
 
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                      <div className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 flex-1">
                           {post.title}
                         </h3>
-                        <p className="text-gray-400 mb-4 line-clamp-2">{post.excerpt}</p>
+                        <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{post.excerpt}</p>
 
-                        <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center justify-between text-sm text-gray-500 mt-auto">
                           <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
@@ -171,16 +171,18 @@ export default function BlogPage() {
               </div>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar - Alinhada com o topo e base dos posts */}
             <div className="lg:col-span-1">
-              <BlogSidebar />
+              <div className="sticky top-8">
+                <BlogSidebar />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-16 aytt-bg-primary texture-grunge">
+      {/* Newsletter Section - Com separação visual clara */}
+      <section className="py-16 aytt-bg-primary texture-grunge border-t border-white/20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
