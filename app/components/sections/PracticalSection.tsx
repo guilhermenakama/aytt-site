@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import { CheckCircle } from "lucide-react"
 import { SharedSectionProps } from "../../types"
@@ -32,7 +32,7 @@ const PracticalSection = ({ setActiveSection }: SharedSectionProps) => {
             >
               <div className="flex items-center mb-4 sm:mb-6">
                 <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
-                  {solution.icon}
+                  {React.createElement(solution.icon, { className: "h-6 w-6 text-blue-400" })}
                 </div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{solution.title}</h3>
               </div>

@@ -14,6 +14,7 @@ export type SectionId =
   | "contact"
 
 export type SharedSectionProps = {
+  activeSection: SectionId
   setActiveSection: (sectionId: SectionId) => void
 }
 
@@ -54,3 +55,4 @@ export type FormData = {
   empresa: string
   projeto: string
 }
+

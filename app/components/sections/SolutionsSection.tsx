@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { SharedSectionProps } from "../../types"
@@ -29,7 +29,7 @@ const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="icon-container w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
-                {differential.icon}
+                {React.createElement(differential.icon, { className: "h-6 w-6 text-purple-400" })}
               </div>
               <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{differential.text}</p>
             </div>

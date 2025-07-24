@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import { SharedSectionProps } from "../../types"
 import { URGENCY_INDICATORS } from "../../data/constants"
@@ -34,7 +34,7 @@ const UrgencySection = ({ setActiveSection }: SharedSectionProps) => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="icon-container w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
-                {indicator.icon}
+                {React.createElement(indicator.icon, { className: "h-6 w-6 text-yellow-400" })}
               </div>
               <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{indicator.text}</p>
             </div>

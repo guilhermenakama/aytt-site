@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
@@ -37,7 +37,7 @@ const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) =>
               >
                 <div className="flex items-start">
                   <div className="text-red-400 mr-3 mt-1 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
-                    {point.icon}
+                    {React.createElement(point.icon, { className: "h-6 w-6 text-red-400" })}
                   </div>
                   <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{point.text}</p>
                 </div>

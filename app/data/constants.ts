@@ -215,6 +215,7 @@ export const CONTACT_INFO = {
 }
 
 export const WHATSAPP_LINKS = {
+  HERO: "https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?",
   MAIN: "https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?",
   READY: "https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?",
 }
