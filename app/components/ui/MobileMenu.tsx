@@ -17,7 +17,7 @@ const MobileMenu = ({ isOpen, onClose, navigationItems }: MobileMenuProps) => {
         {navigationItems.map((item, index) => (
           <Link
             key={item.key}
-            href={item.isExternal ? item.href! : `#${item.key}`}
+            href={'isExternal' in item && item.isExternal ? item.href! : `#${item.key}`}
             className="text-lg sm:text-xl font-medium border-b border-gray-800 pb-3 sm:pb-4 flex justify-between items-center transform hover:translate-x-4 transition-all duration-300"
             style={{ animationDelay: `${index * 0.1}s` }}
             onClick={onClose}

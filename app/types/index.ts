@@ -14,7 +14,7 @@ export type SectionId =
   | "contact"
 
 export type SharedSectionProps = {
-  activeSection: SectionId
+  activeSection?: SectionId  // ← MUDANÇA: Agora é opcional
   setActiveSection: (sectionId: SectionId) => void
 }
 
@@ -70,3 +70,11 @@ export type HeaderProps = {
 export type NavigationItem =
   | { key: SectionId; label: string }
   | { key: string; label: string; isExternal: true; href: string }
+
+// Tipo específico para ContactSection (precisa de props extras)
+export type ContactSectionProps = {
+  activeSection?: SectionId
+  setActiveSection: (sectionId: SectionId) => void
+  setShowPrivacyPolicy: (show: boolean) => void
+  setShowConsentTerm: (show: boolean) => void
+}

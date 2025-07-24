@@ -51,7 +51,7 @@ const Header = ({ isScrolled, activeSection, setActiveSection }: HeaderProps) =>
             {navigationItems.map((item) => (
               <Link
                 key={item.key}
-                href={item.isExternal ? item.href! : `#${item.key}`}
+                href={'isExternal' in item && item.isExternal ? item.href! : `#${item.key}`}
                 className={`text-sm uppercase tracking-wider font-medium transition-all duration-300 hover:text-blue-400 hover:scale-110 ${
                   activeSection === item.key ? "text-blue-400 scale-110" : "text-gray-300"
                 }`}

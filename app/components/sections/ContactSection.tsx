@@ -2,10 +2,15 @@ import { useState, useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { ArrowRight, Mail, Check } from "lucide-react"
-import { SharedSectionProps, FormData } from "../../types"
+import { ContactSectionProps, FormData } from "../../types" // ← USANDO ContactSectionProps
 import { WHATSAPP_LINKS, CONTACT_INFO } from "../../data/constants"
 
-const ContactSection = ({ setActiveSection }: SharedSectionProps) => {
+const ContactSection = ({ 
+  activeSection, // ← Opcional, pode ser undefined
+  setActiveSection, 
+  setShowPrivacyPolicy,
+  setShowConsentTerm 
+}: ContactSectionProps) => {
   const contactRef = useRef<HTMLElement>(null)
   const [formData, setFormData] = useState<FormData>({
     nome: '',
@@ -15,8 +20,7 @@ const ContactSection = ({ setActiveSection }: SharedSectionProps) => {
   })
   const [consentimentoAceito, setConsentimentoAceito] = useState(false)
   const [enviandoEmail, setEnviandoEmail] = useState(false)
-  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
-  const [showConsentTerm, setShowConsentTerm] = useState(false)
+  
   useSectionActive(contactRef, "contact", setActiveSection)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

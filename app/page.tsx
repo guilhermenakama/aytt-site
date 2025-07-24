@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/ui/Header";
 import Footer from "./components/ui/Footer";
-import ModalContainer from "./components/ui/ModalContainer";
+import { ModalContainer } from "./components/ui/ModalContainer";
 
 // Importe suas sections na ordem desejada
 import HeroSection from "./components/sections/HeroSection";
@@ -18,25 +18,43 @@ import ChallengeSection from "./components/sections/ChallengeSection";
 import ReadySection from "./components/sections/ReadySection";
 import UrgencySection from "./components/sections/UrgencySection";
 import ContactSection from "./components/sections/ContactSection";
-// ...adicione outras sections aqui
+
+import type { SectionId } from "./types";
 
 export default function HomePage() {
   // Estado global para navegação/menu
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+  
   // Estado global para modais
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [showConsentTerm, setShowConsentTerm] = useState(false);
-  // (se quiser: controle de scroll, carregamento, etc.)
+
+  // Hook para detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <Header 
+        isScrolled={isScrolled}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
-        // ...demais props
       />
       <main>
-        <HeroSection activeSection={activeSection} setActiveSection={setActiveSection} />
+        {/* Seções que precisam de activeSection E setActiveSection */}
+        <HeroSection 
+          activeSection={activeSection} 
+          setActiveSection={setActiveSection} 
+        />
+        
+        {/* Seções que só precisam de setActiveSection */}
         <PhilosophySection setActiveSection={setActiveSection} />
         <FoundersSection setActiveSection={setActiveSection} />
         <TeamSection setActiveSection={setActiveSection} />
@@ -47,11 +65,14 @@ export default function HomePage() {
         <ChallengeSection setActiveSection={setActiveSection} />
         <ReadySection setActiveSection={setActiveSection} />
         <UrgencySection setActiveSection={setActiveSection} />
-        <ContactSection setActiveSection={setActiveSection} 
+        
+        {/* ContactSection com props especiais */}
+        <ContactSection 
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
           setShowPrivacyPolicy={setShowPrivacyPolicy}
           setShowConsentTerm={setShowConsentTerm}
         />
-        {/* ...adicione outras sections na ordem desejada */}
       </main>
       <Footer 
         setShowPrivacyPolicy={setShowPrivacyPolicy}
