@@ -56,3 +56,7 @@ export type FormData = {
   projeto: string
 }
 
+export type FooterProps = {
+  setShowPrivacyPolicy: (value: boolean) => void;
+  setShowConsentTerm: (value: boolean) => void;
+};
