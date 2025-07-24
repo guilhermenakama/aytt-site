@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import { CheckCircle } from "lucide-react"
 import { SharedSectionProps } from "../../types"
-import { TEAM_ROLES } from "../../data/constants.ts"
+import { TEAM_ROLES } from "../../data/constants"
 
 const TeamSection = ({ setActiveSection }: SharedSectionProps) => {
   const teamRef = useRef<HTMLElement>(null)

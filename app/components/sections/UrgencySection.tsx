@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import { SharedSectionProps } from "../../types"
-import { URGENCY_INDICATORS } from "../../data/constants.ts"
+import { URGENCY_INDICATORS } from "../../data/constants"
 
 const UrgencySection = ({ setActiveSection }: SharedSectionProps) => {
   const urgencyRef = useRef<HTMLElement>(null)

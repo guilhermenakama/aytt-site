@@ -21,6 +21,73 @@ export const URGENCY_INDICATORS = [
   { icon: Target, text: "É hora de ganhar vantagem competitiva" },
 ]
 
+export const FOUNDERS = [
+  {
+    name: "Rodolfo Spigai",
+    role: "Sócio Fundador",
+    description:
+      "Advogado empresarial com 25 anos de experiência, sócio fundador de três empresas (VAR Business Beyond, Caetano de Paula Advogados e AYTT). Especialista reconhecido em LGPD e Direito Digital. Ex-investidor anjo e mentor ativo em hubs de inovação e incubadoras. Expertise sólida em Compliance e Administração Empresarial, trazendo visão jurídica e estratégica para projetos de tecnologia.",
+    image: "/rodolfo-profile-pic.png"
+  },
+  {
+    name: "Ronaldo Sirosse",
+    role: "Sócio Fundador",
+    description:
+      "Engenheiro Elétrico (Inatel) com mais de 10 anos liderando desenvolvimento de software e Segurança da Informação. Ex-Executivo do Inatel Competence Center, onde liderou equipes de até 100 profissionais em projetos para gigantes como Ericsson e Qualcomm. Especialista em certificações MPS.BR e gestão de processos. Combina experiência técnica robusta com liderança em projetos de grande escala.",
+    image: "/ronaldo-profile-pic.png"
+  },
+  {
+    name: "Guilherme Nakama",
+    role: "Sócio Fundador",
+    description:
+      "Co-fundador do INSPER AI e sócio fundador da AYTT, focado em traduzir complexidade tecnológica em soluções práticas de IA para empresas. Estudante de Engenharia da Computação no INSPER, cresceu em ambiente empresarial familiar, desenvolvendo visão única sobre como a tecnologia impacta operações reais. Atua como ponte entre inovação técnica e necessidades concretas de negócio.",
+    image: "/guilherme-profile-pic.png"
+  }
+]
+
+export const TEAM_ROLES = [
+  {
+    title: "LÍDER TÉCNICO",
+    description: "Define arquitetura técnica e orienta estrategicamente soluções de IA",
+    responsibilities: [
+      "Arquitetura de Soluções: Define estratégias técnicas adequadas",
+      "Análise de Viabilidade: Conduz estudos técnicos",
+      "Liderança da Equipe: Orienta boas práticas e garante qualidade"
+    ],
+    icon: Brain({ className: "h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" })
+  },
+  {
+    title: "GERENTE DE PROJETOS",
+    description: "Coordena prazos, orçamento e comunicação cliente-equipe",
+    responsibilities: [
+      "Gestão de Cronogramas: Planeja e monitora entregas",
+      "Comunicação Estratégica: Coordena alinhamento",
+      "Controle de Recursos: Gerencia riscos e qualidade"
+    ],
+    icon: Target({ className: "h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" })
+  },
+  {
+    title: "CONSULTOR TECH",
+    description: "Traduz objetivos do negócio em soluções práticas com IA",
+    responsibilities: [
+      "Explora Oportunidades: Identifica onde IA pode gerar valor",
+      "Definição de Soluções: Define soluções viáveis e alinhadas",
+      "Validação Estratégica: Valida impacto e escopo"
+    ],
+    icon: Lightbulb({ className: "h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" })
+  },
+  {
+    title: "TÉCNICO",
+    description: "Executa implementação prática das soluções de IA",
+    responsibilities: [
+      "Desenvolvimento: Implementa automações e modelos de IA",
+      "Integração de Sistemas: Conecta novas tecnologias",
+      "Deploy e Manutenção: Realiza deploy e garante funcionamento"
+    ],
+    icon: Code({ className: "h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" })
+  }
+]
+
 export const COMPANY_LOGOS = [
   { name: "4Intelligence", file: "4intelligence.png" },
   { name: "Frimesa", file: "frimesa.png" },
@@ -139,3 +206,15 @@ export const READY_CHECKLIST = [
   { icon: Gauge, text: "Perde oportunidades por lentidão operacional" },
   { icon: TrendingDown, text: "Se frustrou com projetos de tecnologia" },
 ]
+
+export const CONTACT_INFO = {
+  whatsapp: "(43) 99910-8255",
+  email: "guilhermenakama@sorai.net.br",
+  instagram: "@aytt.tech",
+}
+
+export const WHATSAPP_LINKS = {
+  MAIN: "https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?",
+  READY: "https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?",
+}
+

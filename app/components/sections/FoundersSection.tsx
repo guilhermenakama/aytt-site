@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Image from "next/image"
 import { SharedSectionProps } from "../../types"
-import { FOUNDERS, COMPANY_LOGOS } from "../../data/constants.ts"
+import { FOUNDERS, COMPANY_LOGOS } from "../../data/constants"
 
 const FoundersSection = ({ setActiveSection }: SharedSectionProps) => {
   const foundersRef = useRef<HTMLElement>(null)

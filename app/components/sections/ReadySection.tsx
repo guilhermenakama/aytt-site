@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { SharedSectionProps } from "../../types"
-import { READY_CHECKLIST, WHATSAPP_LINKS } from "../../data/constants.ts"
+import { READY_CHECKLIST, WHATSAPP_LINKS } from "../../data/constants"
 
 const ReadySection = ({ setActiveSection }: SharedSectionProps) => {
   const readyRef = useRef<HTMLElement>(null)

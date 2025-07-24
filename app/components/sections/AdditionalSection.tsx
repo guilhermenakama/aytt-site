@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useSectionActive } from "../../hooks/useSectionActive";
 import { CheckCircle } from "lucide-react"
 import { SharedSectionProps } from "../../types"
-import { ADDITIONAL_SERVICES } from "../../data/constants.ts"
+import { ADDITIONAL_SERVICES } from "../../data/constants"
 
 const AdditionalSection = ({ setActiveSection }: SharedSectionProps) => {
   const additionalRef = useRef<HTMLElement>(null)

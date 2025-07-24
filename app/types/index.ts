@@ -14,7 +14,7 @@ export type SectionId =
   | "contact"
 
 export type SharedSectionProps = {
-  setActiveSection: Dispatch<SetStateAction<SectionId>>
+  setActiveSection: (sectionId: SectionId) => void
 }
 
 export type IconType = ReactNode

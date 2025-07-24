@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { SharedSectionProps } from "../../types"
-import { SOLUTION_DIFFERENTIALS, WHATSAPP_LINKS } from "../../data/constants.ts"
+import { SOLUTION_DIFFERENTIALS, WHATSAPP_LINKS } from "../../data/constants"
 
 const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
   const solutionsRef = useRef<HTMLElement>(null)

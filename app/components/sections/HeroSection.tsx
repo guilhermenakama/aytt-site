@@ -3,7 +3,7 @@ import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SharedSectionProps } from "../../types"
-import { PAIN_POINTS, WHATSAPP_LINKS } from "../../data/constants.ts"
+import { PAIN_POINTS, WHATSAPP_LINKS } from "../../data/constants"
 
 const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) => {
   const heroRef = useRef<HTMLElement>(null)

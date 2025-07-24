@@ -3,7 +3,7 @@ import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
 import { ArrowRight, Mail, Check } from "lucide-react"
 import { SharedSectionProps, FormData } from "../../types"
-import { WHATSAPP_LINKS, CONTACT_INFO } from "../../data/constants.ts"
+import { WHATSAPP_LINKS, CONTACT } from "../../data/constants"
 
 const ContactSection = ({ setActiveSection }: SharedSectionProps) => {
   const contactRef = useRef<HTMLElement>(null)
