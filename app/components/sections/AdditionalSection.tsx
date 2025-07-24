@@ -1,7 +1,9 @@
-import { useRef } from "react";
-import { useSectionActive } from "../../hooks/useSectionActive";
+"use client"
+
+import { useRef } from "react"
+import { useSectionActive } from "../../hooks/useSectionActive"
 import { CheckCircle } from "lucide-react"
-import { SharedSectionProps } from "../../types"
+import type { SharedSectionProps } from "../../types"
 import { ADDITIONAL_SERVICES } from "../../data/constants"
 
 const AdditionalSection = ({ setActiveSection }: SharedSectionProps) => {
@@ -34,14 +36,21 @@ const AdditionalSection = ({ setActiveSection }: SharedSectionProps) => {
                 <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
                   <service.icon className="h-6 w-6 sm:h-8 sm:w-8" />
                 </div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{service.title}</h3>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">
+                  {service.title}
+                </h3>
               </div>
-              
+
               <div className="space-y-3 sm:space-y-4">
                 {service.services.map((item, i) => (
-                  <div key={i} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                  <div
+                    key={i}
+                    className="flex items-start transform hover:translate-x-2 transition-transform duration-300"
+                  >
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
-                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{item}</p>
+                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>

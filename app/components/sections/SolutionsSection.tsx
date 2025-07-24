@@ -1,7 +1,9 @@
-import React, { useRef } from "react"
+"use client"
+
+import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
-import { SharedSectionProps } from "../../types"
+import type { SharedSectionProps } from "../../types"
 import { SOLUTION_DIFFERENTIALS, WHATSAPP_LINKS } from "../../data/constants"
 
 const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
@@ -18,7 +20,9 @@ const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
               Soluções
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-4">Alocação de Times de Desenvolvimento de Soluções de IA</p>
+          <p className="text-lg sm:text-xl text-gray-300 mb-4">
+            Alocação de Times de Desenvolvimento de Soluções de IA
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -29,9 +33,11 @@ const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="icon-container w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
-                {React.createElement(differential.icon, { className: "h-6 w-6 text-purple-400" })}
+                <differential.icon className="h-6 w-6 text-purple-400" />
               </div>
-              <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{differential.text}</p>
+              <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">
+                {differential.text}
+              </p>
             </div>
           ))}
         </div>
@@ -41,10 +47,11 @@ const SolutionsSection = ({ setActiveSection }: SharedSectionProps) => {
             A Vantagem para o Seu Negócio:
           </h3>
           <p className="text-lg sm:text-xl text-gray-300">
-            Soluções personalizadas para a sua empresa, sem escopo engessado - seu projeto cresce e se adapta conforme você descobre novas necessidades
+            Soluções personalizadas para a sua empresa, sem escopo engessado - seu projeto cresce e se adapta conforme
+            você descobre novas necessidades
           </p>
         </div>
-        
+
         <div className="mt-12 text-center">
           <Link
             href={WHATSAPP_LINKS.MAIN}

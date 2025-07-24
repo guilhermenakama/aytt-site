@@ -1,7 +1,9 @@
-import React, { useRef } from "react"
+"use client"
+
+import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
-import { SharedSectionProps } from "../../types"
+import type { SharedSectionProps } from "../../types"
 import { READY_CHECKLIST, WHATSAPP_LINKS } from "../../data/constants"
 
 const ReadySection = ({ setActiveSection }: SharedSectionProps) => {
@@ -18,9 +20,7 @@ const ReadySection = ({ setActiveSection }: SharedSectionProps) => {
               para ter um time de IA?
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mt-2">
-            Você está pronto se...
-          </p>
+          <p className="text-lg sm:text-xl text-gray-300 mt-2">Você está pronto se...</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -31,17 +31,17 @@ const ReadySection = ({ setActiveSection }: SharedSectionProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="icon-container-success w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
-                {React.createElement(item.icon, { className: "h-6 w-6 text-green-400" })}
+                <item.icon className="h-6 w-6 text-green-400" />
               </div>
-              <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{item.text}</p>
+              <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
 
         <div className="text-center bg-gradient-to-r from-green-900/20 to-green-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
-          <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400 animate-pulse">
-            A boa notícia?
-          </h3>
+          <h3 className="text-xl sm:text-2xl font-bold mb-4 text-green-400 animate-pulse">A boa notícia?</h3>
           <p className="text-lg sm:text-xl text-gray-300">
             Automatizar pode ser simples — se for feito do jeito certo.
           </p>

@@ -1,6 +1,8 @@
-import React, { useRef } from "react"
+"use client"
+
+import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
-import { SharedSectionProps } from "../../types"
+import type { SharedSectionProps } from "../../types"
 import { URGENCY_INDICATORS } from "../../data/constants"
 
 const UrgencySection = ({ setActiveSection }: SharedSectionProps) => {
@@ -20,9 +22,7 @@ const UrgencySection = ({ setActiveSection }: SharedSectionProps) => {
           <p className="text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl px-4">
             A IA deixou de ser tendência. Agora é uma <strong>decisão estratégica</strong>.
             <br />
-            <span className="block mt-4 font-semibold text-white">
-              Se você sente que...
-            </span>
+            <span className="block mt-4 font-semibold text-white">Se você sente que...</span>
           </p>
         </div>
 
@@ -34,17 +34,18 @@ const UrgencySection = ({ setActiveSection }: SharedSectionProps) => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="icon-container w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
-                {React.createElement(indicator.icon, { className: "h-6 w-6 text-yellow-400" })}
+                <indicator.icon className="h-6 w-6 text-yellow-400" />
               </div>
-              <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{indicator.text}</p>
+              <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">
+                {indicator.text}
+              </p>
             </div>
           ))}
         </div>
 
         <div className="text-center bg-gradient-to-r from-blue-900/20 to-blue-900/20 rounded-3xl p-6 sm:p-8 animate-on-scroll transform hover:scale-105 transition-all duration-500">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
-            Então é o momento de você conhecer a{" "}
-            <span className="text-blue-400 animate-pulse">AYTT</span>
+            Então é o momento de você conhecer a <span className="text-blue-400 animate-pulse">AYTT</span>
           </h3>
         </div>
       </div>

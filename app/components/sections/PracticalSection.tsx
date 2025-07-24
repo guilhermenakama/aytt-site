@@ -1,7 +1,9 @@
-import React, { useRef } from "react"
+"use client"
+
+import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import { CheckCircle } from "lucide-react"
-import { SharedSectionProps } from "../../types"
+import type { SharedSectionProps } from "../../types"
 import { PRACTICAL_SOLUTIONS } from "../../data/constants"
 
 const PracticalSection = ({ setActiveSection }: SharedSectionProps) => {
@@ -32,19 +34,26 @@ const PracticalSection = ({ setActiveSection }: SharedSectionProps) => {
             >
               <div className="flex items-center mb-4 sm:mb-6">
                 <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
-                  {React.createElement(solution.icon, { className: "h-6 w-6 text-blue-400" })}
+                  <solution.icon className="h-6 w-6 text-blue-400" />
                 </div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{solution.title}</h3>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">
+                  {solution.title}
+                </h3>
               </div>
-              
+
               <div className="space-y-6 sm:space-y-8">
                 <div>
                   <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-blue-400">Funcionalidades:</h4>
                   <div className="space-y-2 sm:space-y-3">
                     {solution.features.map((feature, i) => (
-                      <div key={i} className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
+                      <div
+                        key={i}
+                        className="flex items-start transform hover:translate-x-2 transition-transform duration-300"
+                      >
                         <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0 animate-pulse" />
-                        <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{feature}</p>
+                        <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">
+                          {feature}
+                        </p>
                       </div>
                     ))}
                   </div>

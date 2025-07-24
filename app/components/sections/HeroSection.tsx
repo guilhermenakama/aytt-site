@@ -1,18 +1,29 @@
-import React, { useRef } from "react"
+"use client"
+
+import { useRef } from "react"
 import { useSectionActive } from "../../hooks/useSectionActive"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { SharedSectionProps } from "../../types"
-import { PAIN_POINTS, WHATSAPP_LINKS } from "../../data/constants"
+import { ArrowRight, FileText, Clock, TrendingUp, Shuffle, MessageCircle, DollarSign } from "lucide-react"
+import type { SharedSectionProps } from "../../types"
+import { WHATSAPP_LINKS } from "../../data/constants"
+
+const PAIN_POINTS = [
+  { icon: FileText, text: "A empresa não entregou o que foi combinado" },
+  { icon: Clock, text: "A entrega demorou mais do que o previsto" },
+  { icon: TrendingUp, text: "O resultado final não atende às expectativas" },
+  { icon: Shuffle, text: "O escopo mudou várias vezes e nada ficou claro" },
+  { icon: MessageCircle, text: "A comunicação foi falha e sem alinhamento com o negócio" },
+  { icon: DollarSign, text: "No fim, é você quem precisa lidar com o prejuízo" },
+]
 
 const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) => {
   const heroRef = useRef<HTMLElement>(null)
   useSectionActive(heroRef, "home", setActiveSection)
 
   return (
-    <section 
-      id="home" 
-      ref={heroRef} 
+    <section
+      id="home"
+      ref={heroRef}
       className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-28 md:pt-24 px-4 sm:px-6 overflow-hidden"
     >
       <div className="w-full max-w-6xl mx-auto relative z-10">
@@ -23,8 +34,11 @@ const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) =>
               Não Saem do Papel?
             </span>
           </h1>
-          
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 px-4 animate-slideInUp" style={{ animationDelay: '0.3s' }}>
+
+          <p
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 px-4 animate-slideInUp"
+            style={{ animationDelay: "0.3s" }}
+          >
             <strong>Se você já investiu meses em um projeto de IA e...</strong>
           </p>
 
@@ -37,19 +51,27 @@ const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) =>
               >
                 <div className="flex items-start">
                   <div className="text-red-400 mr-3 mt-1 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
-                    {React.createElement(point.icon, { className: "h-6 w-6 text-red-400" })}
+                    <point.icon className="h-6 w-6 text-red-400" />
                   </div>
-                  <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{point.text}</p>
+                  <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">
+                    {point.text}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
 
-          <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4 animate-slideInUp animate-pulse" style={{ animationDelay: '1.2s' }}>
+          <p
+            className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 sm:mb-10 text-red-400 px-4 animate-slideInUp animate-pulse"
+            style={{ animationDelay: "1.2s" }}
+          >
             Você já passou por algo assim?
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 animate-slideInUp" style={{ animationDelay: '1.5s' }}>
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center px-4 animate-slideInUp"
+            style={{ animationDelay: "1.5s" }}
+          >
             <Link
               href={WHATSAPP_LINKS.HERO}
               target="_blank"
@@ -63,9 +85,18 @@ const HeroSection = ({ activeSection, setActiveSection }: SharedSectionProps) =>
       </div>
 
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-float" style={{ animationDelay: '0s' }}></div>
-      <div className="absolute top-40 right-20 w-12 h-12 bg-purple-500/10 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute bottom-40 left-20 w-16 h-16 bg-green-500/10 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
+      <div
+        className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-float"
+        style={{ animationDelay: "0s" }}
+      ></div>
+      <div
+        className="absolute top-40 right-20 w-12 h-12 bg-purple-500/10 rounded-full animate-float"
+        style={{ animationDelay: "2s" }}
+      ></div>
+      <div
+        className="absolute bottom-40 left-20 w-16 h-16 bg-green-500/10 rounded-full animate-float"
+        style={{ animationDelay: "4s" }}
+      ></div>
     </section>
   )
 }
