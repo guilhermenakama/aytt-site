@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react"
 
 export function BlogHeader() {
   return (
-    <header className="bg-gradient-to-r from-gray-900/95 to-black/95 backdrop-blur-md border-b border-white/20 py-6">
+    <header className="bg-grafitti-gradient backdrop-blur-md border-b border-white/20 py-6">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <Link
@@ -29,10 +29,11 @@ export function BlogHeader() {
           </Link>
 
           <Link
-            href="/contato"
+            href="https://wa.me/5543999108255"
+            target="_blank"
             className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm"
           >
-            Contato
+            WhatsApp
           </Link>
         </div>
       </div>

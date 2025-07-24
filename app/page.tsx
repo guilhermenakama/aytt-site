@@ -449,6 +449,7 @@ export default function Home() {
                  item === "experience" ? "Experiência" :
                  item === "team" ? "Time" :
                  item === "solutions" ? "Soluções" :
+                 item === "blog" ? "Blog" :
                  item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
             ))}
@@ -493,6 +494,7 @@ export default function Home() {
                  item === "experience" ? "Experiência" :
                  item === "team" ? "Time" :
                  item === "solutions" ? "Soluções" :
+                 item === "blog" ? "Blog" :
                  item === "contact" ? "Contato" : item.charAt(0).toUpperCase() + item.slice(1)}</span>
                 <ChevronRight className="h-5 w-5 text-blue-400 transform hover:translate-x-2 transition-transform duration-300" />
               </Link>

@@ -56,11 +56,11 @@ export default function BlogPage() {
   const recentPosts = blogPosts.filter((post) => !post.featured).slice(0, 6)
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-transparent text-white">
       <BlogHeader />
 
       {/* Hero Section */}
-      <section className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+      <section className="py-16 sm:py-24 relative section-bg-blue texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
@@ -80,7 +80,7 @@ export default function BlogPage() {
               <input
                 type="text"
                 placeholder="Buscar artigos sobre IA, automação, cases..."
-                className="w-full bg-white/5 border border-white/10 rounded-full pl-12 pr-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="form-input w-full pl-12 pr-4 py-3 rounded-full"
               />
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function BlogPage() {
 
       {/* Featured Posts */}
       {featuredPosts.length > 0 && (
-        <section className="py-16 bg-gradient-to-b from-black to-gray-900/30">
+        <section className="py-16 section-bg-dark texture-subtle">
           <div className="container mx-auto px-4 sm:px-6">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
               Artigos em <span className="text-blue-400">Destaque</span>
@@ -99,7 +99,7 @@ export default function BlogPage() {
               {featuredPosts.map((post) => (
                 <article key={post.slug} className="group">
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105">
+                    <div className="card overflow-hidden hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105">
                       <div className="relative h-64 overflow-hidden">
                         <Image
                           src={post.image || "/placeholder.svg"}
@@ -148,7 +148,7 @@ export default function BlogPage() {
       )}
 
       {/* Recent Posts */}
-      <section className="py-16 bg-gradient-to-b from-gray-900/30 to-black">
+      <section className="py-16 aytt-bg-accent texture-concrete">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Main Content */}
@@ -180,7 +180,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-900/20 to-blue-900/20">
+      <section className="py-16 aytt-bg-primary texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -194,7 +194,7 @@ export default function BlogPage() {
               <input
                 type="email"
                 placeholder="Seu melhor e-mail"
-                className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="form-input flex-1 rounded-full px-4 py-3"
               />
               <button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap">
                 Inscrever-se

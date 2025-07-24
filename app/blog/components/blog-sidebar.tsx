@@ -10,7 +10,7 @@ export function BlogSidebar() {
   return (
     <aside className="space-y-8">
       {/* Popular Posts */}
-      <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+      <div className="card p-6">
         <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
           <TrendingUp className="h-5 w-5 text-blue-400" />
           Posts Populares
@@ -31,7 +31,7 @@ export function BlogSidebar() {
       </div>
 
       {/* Categories */}
-      <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+      <div className="card p-6">
         <h3 className="text-xl font-bold mb-4">Categorias</h3>
         <div className="space-y-2">
           {categories.map((category) => {
@@ -51,7 +51,7 @@ export function BlogSidebar() {
       </div>
 
       {/* Tags */}
-      <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+      <div className="card p-6">
         <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
           <Tag className="h-5 w-5 text-blue-400" />
           Tags
@@ -70,13 +70,14 @@ export function BlogSidebar() {
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20">
+      <div className="card-info p-6">
         <h3 className="text-xl font-bold mb-4">Precisa de Ajuda com IA?</h3>
         <p className="text-gray-300 text-sm mb-4">
           Nossa equipe pode ajudar sua empresa a implementar soluções de IA e automação.
         </p>
         <Link
-          href="/contato"
+          href="https://wa.me/5543999108255"
+          target="_blank"
           className="block bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white text-center py-2 px-4 rounded-full font-medium transition-all duration-300 text-sm"
         >
           Falar com Especialista

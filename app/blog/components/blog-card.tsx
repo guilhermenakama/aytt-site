@@ -25,7 +25,7 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <article className="group">
       <Link href={`/blog/${post.slug}`}>
-        <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105">
+        <div className="card overflow-hidden hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 transform hover:scale-105">
           <div className="relative h-48 overflow-hidden">
             <Image
               src={post.image || "/placeholder.svg"}
