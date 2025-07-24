@@ -7,6 +7,14 @@ import { BlogSidebar } from "./components/blog-sidebar"
 import { BlogCard } from "./components/blog-card"
 import { blogPosts } from "./data/blog-posts"
 
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString("pt-BR", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  })
+}
+
 export const metadata: Metadata = {
   title: "Blog AYTT - Insights sobre IA e Automação Empresarial | Artigos Especializados",
   description:
@@ -125,7 +133,7 @@ export default function BlogPage() {
                           <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1">
                               <Calendar className="h-4 w-4" />
-                              {post.publishedAt}
+                              {formatDate(post.publishedAt)}
                             </div>
                             <div className="flex items-center gap-1">
                               <Clock className="h-4 w-4" />

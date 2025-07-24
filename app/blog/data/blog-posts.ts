@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     title: "Walmart aposta em agentes inteligentes com IA — e o que isso ensina sobre o futuro do e-commerce",
     excerpt:
       "O Walmart anunciou 'super agentes' de IA para transformar sua operação digital. Meta: metade das vendas do e-commerce até 2030. O que isso significa para o varejo?",
-    image: "/blog/Walmart-agentes-IA.jpg",
+    image: "/blog/Walmart-agentes-IA.png",
     category: "E-commerce",
     publishedAt: "2025-07-24",
     readTime: "7 min",
@@ -115,7 +115,7 @@ export const blogPosts: BlogPost[] = [
     title: "Inteligência Artificial na Saúde: A escrita automática das consultas médicas e o que ganhamos com isso",
     excerpt:
       "Dez centros de saúde em Aragón, Espanha, já adotaram IA para transcrever consultas e elaborar relatórios clínicos. Uma inovação silenciosa, mas de alto impacto.",
-    image: "/blog/IA-na-saude.jpg",
+    image: "/blog/IA-na-saude.png",
     category: "Saúde Digital",
     publishedAt: "2025-07-22",
     readTime: "6 min",
@@ -193,7 +193,7 @@ export const blogPosts: BlogPost[] = [
     title: "40% dos Projetos com IA Serão Cancelados. Como Evitar que o Seu Esteja Nessa Estatística?",
     excerpt:
       "Segundo a Gartner, mais de 40% dos projetos com agentes de IA serão cancelados até 2027. Expectativas irreais, escopos mal definidos e falta de preparo são os culpados.",
-    image: "/blog/Projetos-serao-cancelados.jpg",
+    image: "/blog/Projetos-serao-cancelados.png",
     category: "Gestão de Projetos",
     publishedAt: "2025-07-18",
     readTime: "6 min",
@@ -309,7 +309,7 @@ export const blogPosts: BlogPost[] = [
     title: "O que o AI Index 2025 da Stanford revela sobre o presente (e os riscos) da Inteligência Artificial",
     excerpt:
       "A nova edição do AI Index Report traz dados que ajudam a entender onde estamos e para onde vamos quando falamos de IA. Avanços impressionantes, mas riscos crescentes.",
-    image: "/blog/AI-index-2025-stanford.jpg",
+    image: "/blog/AI-index-2025-stanford.png",
     category: "Pesquisa",
     publishedAt: "2025-01-25",
     readTime: "8 min",
@@ -393,7 +393,7 @@ export const blogPosts: BlogPost[] = [
     title: "Preconceito Algorítmico: o viés invisível da IA e como enfrentá-lo agora",
     excerpt:
       "Algoritmos discriminam de maneira silenciosa, muitas vezes imperceptível. Não por intenção, mas por herança. Entenda os riscos e como prevenir.",
-    image: "/blog/Preconceito-algoritmico.jpg",
+    image: "/blog/Preconceito-algoritmico.png",
     category: "Ética IA",
     publishedAt: "2025-01-23",
     readTime: "7 min",
