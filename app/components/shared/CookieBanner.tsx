@@ -4,17 +4,25 @@ import { X, Shield, ExternalLink } from "lucide-react"
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    // Verifica se o usuário já aceitou os cookies
-    const hasAccepted = localStorage.getItem("aytt-cookies-accepted")
-    if (!hasAccepted) {
-      setIsVisible(true)
+    // Garantir que estamos no cliente
+    setIsClient(true)
+    
+    // Verificar se o usuário já aceitou os cookies
+    if (typeof window !== 'undefined') {
+      const hasAccepted = localStorage.getItem("aytt-cookies-accepted")
+      if (!hasAccepted) {
+        setIsVisible(true)
+      }
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem("aytt-cookies-accepted", "true")
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("aytt-cookies-accepted", "true")
+    }
     setIsVisible(false)
   }
 
@@ -22,7 +30,8 @@ export default function CookieBanner() {
     setIsVisible(false)
   }
 
-  if (!isVisible) return null
+  // Não renderizar no servidor
+  if (!isClient || !isVisible) return null
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-900/95 to-black/95 backdrop-blur-md border-t border-white/20 shadow-2xl animate-slideInUp">

@@ -1,9 +1,20 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Header from "./components/ui/Header";
 import Footer from "./components/ui/Footer";
-import { ModalContainer } from "./components/ui/ModalContainer";
+
+// Dynamic imports para componentes que podem ter problemas de SSR
+const ModalContainer = dynamic(
+  () => import("./components/ui/ModalContainer").then(mod => ({ default: mod.ModalContainer })),
+  { ssr: false }
+);
+
+const CookieBanner = dynamic(
+  () => import("./components/shared/CookieBanner"),
+  { ssr: false }
+);
 
 // Importe suas sections na ordem desejada
 import HeroSection from "./components/sections/HeroSection";
@@ -48,13 +59,10 @@ export default function HomePage() {
         setActiveSection={setActiveSection}
       />
       <main>
-        {/* Seções que precisam de activeSection E setActiveSection */}
         <HeroSection 
           activeSection={activeSection} 
           setActiveSection={setActiveSection} 
         />
-        
-        {/* Seções que só precisam de setActiveSection */}
         <PhilosophySection setActiveSection={setActiveSection} />
         <FoundersSection setActiveSection={setActiveSection} />
         <TeamSection setActiveSection={setActiveSection} />
@@ -65,8 +73,6 @@ export default function HomePage() {
         <ChallengeSection setActiveSection={setActiveSection} />
         <ReadySection setActiveSection={setActiveSection} />
         <UrgencySection setActiveSection={setActiveSection} />
-        
-        {/* ContactSection com props especiais */}
         <ContactSection 
           activeSection={activeSection}
           setActiveSection={setActiveSection}
@@ -84,6 +90,7 @@ export default function HomePage() {
         showConsentTerm={showConsentTerm}
         setShowConsentTerm={setShowConsentTerm}
       />
+      <CookieBanner />
     </>
   );
 }

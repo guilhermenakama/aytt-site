@@ -9,6 +9,9 @@ export const usePageState = () => {
   const [showConsentTerm, setShowConsentTerm] = useState(false)
 
   useEffect(() => {
+    // Garantir que estamos no cliente antes de adicionar event listeners
+    if (typeof window === 'undefined') return
+
     const handleScroll = () => {
       const newScrollY = window.scrollY
       setScrollY(newScrollY)
