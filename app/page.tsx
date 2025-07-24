@@ -1,19 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import dynamic from "next/dynamic"
 import Header from "./components/ui/Header"
 import Footer from "./components/ui/Footer"
+import { ModalContainer } from "./components/ui/ModalContainer"
+import CookieBanner from "./components/shared/CookieBanner"
 
-// Dynamic imports para componentes que podem ter problemas de SSR
-const ModalContainer = dynamic(
-  () => import("./components/ui/ModalContainer").then((mod) => ({ default: mod.ModalContainer })),
-  { ssr: false },
-)
-
-const CookieBanner = dynamic(() => import("./components/shared/CookieBanner"), { ssr: false })
-
-// Importe suas sections na ordem desejada
+// Import das sections
 import HeroSection from "./components/sections/HeroSection"
 import PhilosophySection from "./components/sections/PhilosophySection"
 import FoundersSection from "./components/sections/FoundersSection"
