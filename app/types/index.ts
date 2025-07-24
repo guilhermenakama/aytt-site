@@ -68,6 +68,6 @@ export type HeaderProps = {
 }
 
 export type NavigationItem = {
-  id: SectionId
+  key: SectionId
   label: string
 }
