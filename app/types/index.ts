@@ -67,7 +67,6 @@ export type HeaderProps = {
   setActiveSection: (sectionId: SectionId) => void
 }
 
-export type NavigationItem = {
-  key: SectionId
-  label: string
-}
+export type NavigationItem =
+  | { key: SectionId; label: string }
+  | { key: string; label: string; isExternal: true; href: string }
