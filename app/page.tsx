@@ -438,10 +438,10 @@ export default function Home() {
           </div>
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {["home", "philosophy", "experience", "team", "solutions", "contact"].map((item) => (
+            {["home", "philosophy", "experience", "team", "solutions", "blog", "contact"].map((item) => (
               <Link
                 key={item}
-                href={`#${item}`}
+                href={item === "blog" ? "/blog" : `#${item}`}
                 className={`text-sm uppercase tracking-wider font-medium transition-all duration-300 hover:text-blue-400 hover:scale-110 ${activeSection === item ? "text-blue-400 scale-110" : "text-gray-300"}`}
               >
                 {item === "home" ? "Início" : 
@@ -481,10 +481,10 @@ export default function Home() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-30 lg:hidden bg-grafitti-gradient backdrop-blur-md pt-20 sm:pt-24 transition-all duration-500 ease-out animate-slideInLeft texture-subtle">
           <nav className="container mx-auto px-4 sm:px-6 flex flex-col space-y-6 sm:space-y-8 py-6 sm:py-8">
-            {["home", "philosophy", "experience", "team", "solutions", "contact"].map((item, index) => (
+            {["home", "philosophy", "experience", "team", "solutions", "blog", "contact"].map((item, index) => (
               <Link
                 key={item}
-                href={`#${item}`}
+                href={item === "blog" ? "/blog" : `#${item}`}
                 className="text-lg sm:text-xl font-medium border-b border-gray-800 pb-3 sm:pb-4 flex justify-between items-center transform hover:translate-x-4 transition-all duration-300"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setIsMenuOpen(false)}
