@@ -1,4 +1,4 @@
-import { ReactNode, Dispatch, SetStateAction, RefObject } from "react"
+import { Dispatch } from "react"
 
 export type SectionId =
   | "home"
@@ -17,8 +17,6 @@ export type SharedSectionProps = {
   setActiveSection: (sectionId: SectionId) => void
 }
 
-export type IconType = ReactNode
-
 export type Founder = {
   name: string
   role: string
@@ -27,25 +25,32 @@ export type Founder = {
 }
 
 export type ServiceItem = {
-  icon: IconType
+  icon: React.ComponentType<{ className?: string }>
   text: string
 }
 
 export type Solution = {
   title: string
   features: string[]
-  icon: IconType
+  icon: React.ComponentType<{ className?: string }>
 }
 
 export type AdditionalService = {
   title: string
   services: string[]
-  icon: IconType
+  icon: React.ComponentType<{ className?: string }>
 }
 
 export type TeamRole = {
   title: string
   description: string
   responsibilities: string[]
-  icon: IconType
+  icon: React.ComponentType<{ className?: string }>
+}
+
+export type FormData = {
+  nome: string
+  email: string
+  empresa: string
+  projeto: string
 }

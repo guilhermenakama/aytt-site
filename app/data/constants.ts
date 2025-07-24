@@ -188,7 +188,7 @@ export const ADDITIONAL_SERVICES = [
       "Arquitetura de Soluções com IA: Apoio técnico na construção com IA e N8N, foco em eficiência e escalabilidade",
       "Orientação Estratégica Personalizada: Discussão de casos reais e orientação sob medida"
     ],
-    icon: Building
+    icon: Building,
   },
   {
     title: "TREINAMENTOS CUSTOMIZADOS",
@@ -196,9 +196,10 @@ export const ADDITIONAL_SERVICES = [
       "Treinamentos In Company: Formações práticas adaptadas à realidade da equipe",
       "Workshops Sob Demanda: Formações exclusivas com foco em aplicação imediata"
     ],
-    icon: GraduationCap
-  }
+    icon: GraduationCap,
+  },
 ]
+
 
 export const READY_CHECKLIST = [
   { icon: Repeat, text: "Tem processos repetitivos que consomem tempo da equipe" },
@@ -208,9 +209,9 @@ export const READY_CHECKLIST = [
 ]
 
 export const CONTACT_INFO = {
-  whatsapp: "(43) 99910-8255",
-  email: "guilhermenakama@sorai.net.br",
-  instagram: "@aytt.tech",
+  WHATSAPP: "(43) 99910-8255",
+  EMAIL: "guilhermenakama@sorai.net.br",
+  INSTAGRAM: "@aytt.tech",
 }
 
 export const WHATSAPP_LINKS = {

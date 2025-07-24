@@ -32,7 +32,7 @@ const AdditionalSection = ({ setActiveSection }: SharedSectionProps) => {
             >
               <div className="flex items-center mb-4 sm:mb-6">
                 <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
-                  {service.icon}
+                  <service.icon className="h-6 w-6 sm:h-8 sm:w-8" />
                 </div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{service.title}</h3>
               </div>
