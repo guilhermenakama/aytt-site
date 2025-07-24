@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import CookieBanner from './cookie-banner'
 import { PoliticaPrivacidade } from './politica-privacidade'
+import { TermoConsentimento } from './termo-consentimento'
 import {
   ChevronDown,
   ArrowRight,
@@ -78,6 +79,7 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
+  const [showConsentTerm, setShowConsentTerm] = useState(false)
 
   const heroRef = useRef<HTMLElement>(null)
   const urgencyRef = useRef<HTMLElement>(null)
@@ -97,6 +99,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleOpenPrivacy = () => setShowPrivacyPolicy(true)
+    const handleOpenConsent = () => setShowConsentTerm(true)
 
     const handleScroll = () => {
       const newScrollY = window.scrollY
@@ -135,6 +138,7 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener('openPrivacyPolicy', handleOpenPrivacy)
+    window.addEventListener('openConsentTerm', handleOpenConsent)
 
     // Intersection Observer para animações
     const observer = new IntersectionObserver(
@@ -159,6 +163,7 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener('openPrivacyPolicy', handleOpenPrivacy)
+      window.removeEventListener('openConsentTerm', handleOpenConsent)
       observer.disconnect()
     }
   }, [])
@@ -363,47 +368,58 @@ export default function Home() {
   ]
 
   return (
-    <div className="relative bg-black text-white overflow-hidden">
+    <div className="relative bg-transparent text-white overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        {/* Gradient Background with Parallax */}
+        {/* Gradient Background with Parallax - Grafitti Style */}
         <div 
-          className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black pointer-events-none"
+          className="absolute inset-0 pointer-events-none texture-grunge"
           style={{
+            background: `linear-gradient(
+              135deg,
+              rgba(79, 172, 254, 0.08) 0%,
+              rgba(42, 42, 42, 0.95) 30%,
+              rgba(26, 26, 26, 0.98) 70%,
+              rgba(20, 20, 20, 1) 100%
+            )`,
             transform: `translateY(${scrollY * 0.5}px)`
           }}
         ></div>
         
-        {/* Floating Particles */}
+        {/* Floating Particles - Mais sutis */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-float"
+              className="absolute w-1 h-1 bg-blue-400/20 rounded-full animate-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 20}s`,
-                animationDuration: `${20 + Math.random() * 40}s`
+                animationDuration: `${20 + Math.random() * 40}s`,
+                background: i % 3 === 0 ? 'rgba(79, 172, 254, 0.15)' : 
+                          i % 3 === 1 ? 'rgba(255, 255, 255, 0.08)' : 
+                          'rgba(79, 172, 254, 0.1)'
               }}
             />
           ))}
         </div>
 
-        {/* Mouse Follower */}
+        {/* Mouse Follower - Grafitti Style */}
         <div
-          className="absolute w-96 h-96 rounded-full bg-blue-500/5 pointer-events-none transition-all duration-1000 ease-out"
+          className="absolute w-96 h-96 rounded-full bg-blue-500/3 pointer-events-none transition-all duration-1000 ease-out texture-subtle"
           style={{
             left: mousePosition.x - 192,
             top: mousePosition.y - 192,
-            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
+            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
+            background: `radial-gradient(circle, rgba(79, 172, 254, 0.05) 0%, transparent 70%)`
           }}
         />
       </div>
 
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "bg-black/80 backdrop-blur-md py-2 sm:py-4 shadow-2xl" : "py-4 sm:py-6"}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "bg-grafitti-gradient backdrop-blur-md py-2 sm:py-4 shadow-grafitti" : "py-4 sm:py-6"}`}
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           <div className="flex items-center">
@@ -462,7 +478,7 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-30 lg:hidden bg-black/95 backdrop-blur-md pt-20 sm:pt-24 transition-all duration-500 ease-out animate-slideInLeft">
+        <div className="fixed inset-0 z-30 lg:hidden bg-grafitti-gradient backdrop-blur-md pt-20 sm:pt-24 transition-all duration-500 ease-out animate-slideInLeft texture-subtle">
           <nav className="container mx-auto px-4 sm:px-6 flex flex-col space-y-6 sm:space-y-8 py-6 sm:py-8">
             {["home", "philosophy", "experience", "team", "solutions", "contact"].map((item, index) => (
               <Link
@@ -512,7 +528,7 @@ export default function Home() {
               {painPoints.map((point, index) => (
                 <div
                   key={index}
-                  className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-red-500/20 transform hover:scale-105 hover:-translate-y-2 hover:bg-red-900/20 transition-all duration-300 animate-slideInUp group cursor-pointer"
+                  className="card-danger p-4 sm:p-6 transform hover:scale-105 hover:-translate-y-2 hover:bg-red-900/20 transition-all duration-300 animate-slideInUp group cursor-pointer"
                   style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                 >
                   <div className="flex items-start">
@@ -549,7 +565,7 @@ export default function Home() {
       </section>
 
       {/* Urgency Section */}
-      <section id="urgency" ref={urgencyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-blue-900/10 to-gray-900/30">
+      <section id="urgency" ref={urgencyRef} className="py-16 sm:py-24 relative section-bg-blue texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -571,10 +587,10 @@ export default function Home() {
             {urgencyIndicators.map((indicator, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 text-center transform hover:scale-105 hover:-translate-y-4 transition-all duration-500 animate-on-scroll group cursor-pointer"
+                className="card-info p-6 sm:p-8 text-center transform hover:scale-105 hover:-translate-y-4 transition-all duration-500 animate-on-scroll group cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-3 sm:p-4 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
+                <div className="icon-container w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 transform group-hover:scale-110 transition-all duration-300">
                   {indicator.icon}
                 </div>
                 <p className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors duration-300">{indicator.text}</p>
@@ -592,7 +608,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy Section */}
-      <section id="philosophy" ref={philosophyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-gray-900/30 via-gray-900/20 to-black">
+      <section id="philosophy" ref={philosophyRef} className="py-16 sm:py-24 relative section-bg-dark texture-subtle">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center animate-on-scroll">
             <blockquote className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-12 italic px-4 transform hover:scale-105 transition-all duration-500">
@@ -602,7 +618,7 @@ export default function Home() {
               </span>"
             </blockquote>
 
-            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+            <div className="card p-6 sm:p-8 md:p-12 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
               <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
                 Aristóteles chamava de <em>phronesis</em> — a sabedoria prática que equilibra conhecimento técnico com bom senso humano.
               </p>
@@ -618,7 +634,7 @@ export default function Home() {
       </section>
 
       {/* Founders Section */}
-      <section id="experience" ref={foundersRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+      <section id="experience" ref={foundersRef} className="py-16 sm:py-24 relative aytt-bg-accent texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -633,7 +649,7 @@ export default function Home() {
             {founders.map((founder, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
+                className="card p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="text-center mb-6">
@@ -679,7 +695,7 @@ export default function Home() {
       </section>
 
       {/* Solutions Section */}
-      <section id="methodology" ref={solutionsRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-gray-900/40 to-black">
+      <section id="methodology" ref={solutionsRef} className="py-16 sm:py-24 relative aytt-bg-primary texture-concrete">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -695,10 +711,10 @@ export default function Home() {
             {solutionDifferentials.map((differential, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-blue-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
+                className="card-info p-4 sm:p-6 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
+                <div className="icon-container w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
                   {differential.icon}
                 </div>
                 <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{differential.text}</p>
@@ -729,7 +745,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="team" ref={teamRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
+      <section id="team" ref={teamRef} className="py-16 sm:py-24 relative aytt-bg-secondary texture-subtle">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -744,11 +760,11 @@ export default function Home() {
             {teamRoles.map((role, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 group"
+                className="card p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 group"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
+                  <div className="icon-container mr-3 sm:mr-4 flex-shrink-0 transform group-hover:scale-110 transition-all duration-300">
                     {role.icon}
                   </div>
                   <div>
@@ -772,7 +788,7 @@ export default function Home() {
       </section>
 
       {/* Challenge Section */}
-      <section id="challenge" ref={challengeRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-gray-900/40">
+      <section id="challenge" ref={challengeRef} className="py-16 sm:py-24 relative section-bg-blue texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -787,14 +803,14 @@ export default function Home() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 mb-8 sm:mb-12 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+            <div className="card p-6 sm:p-8 md:p-12 mb-8 sm:mb-12 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
                 Eles envolvem elementos com output probabilístico (IA) e maior incerteza técnica. Ao projetar uma arquitetura 
                 de solução com IA, é fundamental compreender as limitações e potencialidades para garantir desempenho, 
                 escalabilidade e viabilidade financeira.
               </p>
               
-              <div className="bg-red-900/20 rounded-xl p-4 sm:p-6 border border-red-500/20 transform hover:scale-105 transition-all duration-300">
+              <div className="card-danger p-4 sm:p-6 transform hover:scale-105 transition-all duration-300">
                 <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-3 sm:mb-4 animate-pulse">Problema Comum</h3>
                 <p className="text-gray-300 text-sm sm:text-base">
                   Tratar IA como um "componente mágico que resolve tudo" gera frustração, altos custos de processamento 
@@ -809,7 +825,7 @@ export default function Home() {
                 Como solucionamos esses desafios?
               </h3>
               
-              <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/20 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
+              <div className="card-info p-6 sm:p-8 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group">
                 <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed mb-4 sm:mb-6 group-hover:text-white transition-colors duration-300">
                   Na AYTT, desenvolvemos uma abordagem que separa elementos determinísticos dos probabilísticos, criando arquiteturas modulares com agentes especializados.
                 </p>
@@ -824,7 +840,7 @@ export default function Home() {
       </section>
 
       {/* Architecture Section */}
-      <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-gray-900/40 via-black to-blue-900/30">
+      <section id="architecture" ref={architectureRef} className="py-16 sm:py-24 relative aytt-bg-accent texture-concrete">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -836,7 +852,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto mb-16 sm:mb-20 md:mb-24 lg:mb-28">
-            <div className="bg-red-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
+            <div className="card-danger p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
                 <XCircle className="h-6 w-6 sm:h-8 sm:w-8 text-red-400 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-red-400">Arquitetura Simples</h3>
@@ -858,7 +874,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-green-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-green-500/20 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
+            <div className="card-success p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
               <div className="flex items-center mb-4 sm:mb-6">
                 <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-400 mr-3 transform group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-xl sm:text-2xl font-bold text-green-400">Arquitetura Robusta (AYTT)</h3>
@@ -890,7 +906,7 @@ export default function Home() {
       </section>
 
       {/* Practical Solutions Section */}
-      <section id="solutions" ref={practicalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/30 to-blue-900/20">
+      <section id="solutions" ref={practicalRef} className="py-16 sm:py-24 relative aytt-bg-secondary texture-subtle">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -905,11 +921,11 @@ export default function Home() {
             {practicalSolutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group"
+                className="card p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500 group"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
+                  <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
                     {solution.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{solution.title}</h3>
@@ -935,7 +951,7 @@ export default function Home() {
       </section>
 
       {/* Additional Services Section */}
-      <section id="additional" ref={additionalRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/20 via-gray-900/30 to-black">
+      <section id="additional" ref={additionalRef} className="py-16 sm:py-24 relative section-bg-dark texture-subtle">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -953,11 +969,11 @@ export default function Home() {
             {additionalServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/20 hover:border-blue-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
+                className="card p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:-translate-y-4 group"
                 style={{ animationDelay: `${index * 0.3}s` }}
               >
                 <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-2 sm:p-3 mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
+                  <div className="icon-container mr-3 sm:mr-4 transform group-hover:scale-110 transition-all duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">{service.title}</h3>
@@ -978,7 +994,7 @@ export default function Home() {
       </section>
 
       {/* Ready Section */}
-      <section id="ready" ref={readyRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-black via-gray-900/40 to-blue-900/30">
+      <section id="ready" ref={readyRef} className="py-16 sm:py-24 relative aytt-bg-primary texture-grunge">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -996,10 +1012,10 @@ export default function Home() {
             {readyChecklist.map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-green-900/20 to-green-900/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-green-500/20 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
+                className="card-success p-4 sm:p-6 text-center animate-on-scroll transform hover:scale-110 hover:-translate-y-4 transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-2 sm:p-3 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
+                <div className="icon-container-success w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 transform group-hover:scale-110 transition-all duration-300">
                   {item.icon}
                 </div>
                 <p className="text-gray-300 text-xs sm:text-sm group-hover:text-white transition-colors duration-300">{item.text}</p>
@@ -1030,7 +1046,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" ref={contactRef} className="py-16 sm:py-24 relative bg-gradient-to-b from-blue-900/30 via-blue-900/40 to-black/90">
+      <section id="contact" ref={contactRef} className="py-16 sm:py-24 relative aytt-bg-accent texture-concrete">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
@@ -1043,7 +1059,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-5xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
+            <div className="card p-6 sm:p-8 animate-on-scroll transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
               <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Entre em Contato</h3>
 
               <div className="space-y-4 sm:space-y-6">
@@ -1054,7 +1070,7 @@ export default function Home() {
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
+                      className="form-input"
                       placeholder="Seu nome"
                     />
                   </div>
@@ -1064,7 +1080,7 @@ export default function Home() {
                     </label>
                     <input
                       type="email"
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
+                      className="form-input"
                       placeholder="seu@email.com"
                     />
                   </div>
@@ -1076,7 +1092,7 @@ export default function Home() {
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base transform focus:scale-105 transition-all duration-300"
+                    className="form-input"
                     placeholder="Nome da sua empresa"
                   />
                 </div>
@@ -1087,7 +1103,7 @@ export default function Home() {
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 sm:px-4 sm:py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base resize-none transform focus:scale-105 transition-all duration-300"
+                    className="form-textarea"
                     placeholder="Conte-nos sobre seus processos que precisam ser automatizados..."
                   ></textarea>
                 </div>
@@ -1103,7 +1119,7 @@ export default function Home() {
             </div>
 
             <div className="animate-on-scroll space-y-6 sm:space-y-8">
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
+              <div className="card p-6 sm:p-8 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Fale Conosco</h3>
 
                 <div className="space-y-4 sm:space-y-6">
@@ -1112,6 +1128,7 @@ export default function Home() {
                     <a
                       href="https://wa.me/5543999108255?text=Olá! Gostaria de saber como a AYTT pode ajudar a automatizar nossos processos com IA. Podemos agendar uma conversa?"
                       target="_blank"
+                      rel="noreferrer"
                       className="text-base sm:text-lg font-medium hover:text-blue-400 transition-all duration-300 transform hover:scale-105 inline-block"
                     >
                       (43) 99910-8255
@@ -1123,6 +1140,7 @@ export default function Home() {
                     <a 
                       href="https://instagram.com/aytt.tech" 
                       target="_blank"
+                      rel="noreferrer"
                       className="text-base sm:text-lg font-medium hover:text-blue-400 transition-all duration-300 transform hover:scale-105 inline-block"
                     >
                       @aytt.tech
@@ -1131,7 +1149,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
+              <div className="card p-6 sm:p-8 transform hover:scale-105 hover:border-blue-500/30 transition-all duration-500">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Você Está Pronto Quando:</h3>
 
                 <div className="space-y-3 sm:space-y-4">
@@ -1176,7 +1194,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 sm:py-16 bg-gradient-to-b from-black/90 to-black border-t border-white/10">
+      <footer className="py-12 sm:py-16 bg-grafitti-gradient border-t border-white/10 texture-subtle">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6 sm:mb-8 animate-on-scroll">
@@ -1191,10 +1209,10 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center space-x-6 mb-6 sm:mb-8 animate-on-scroll">
-              <a href="https://instagram.com/aytt.tech" target="_blank" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="https://instagram.com/aytt.tech" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <Instagram className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
-              <a href="https://wa.me/5543999108255" target="_blank" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="https://wa.me/5543999108255" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
             </div>
@@ -1217,8 +1235,8 @@ export default function Home() {
       {/* Modal da Política */}
       {showPrivacyPolicy && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-black border border-white/20 rounded-lg max-w-4xl max-h-[80vh] overflow-y-auto">
-            <div className="sticky top-0 bg-black border-b border-white/20 p-4 flex justify-between items-center">
+          <div className="card border border-white/20 rounded-lg max-w-4xl max-h-[80vh] overflow-y-auto">
+            <div className="sticky top-0 bg-grafitti-gradient border-b border-white/20 p-4 flex justify-between items-center">
               <h2 className="text-xl font-bold">Política de Privacidade</h2>
               <button 
                 onClick={() => setShowPrivacyPolicy(false)}
@@ -1228,6 +1246,24 @@ export default function Home() {
               </button>
             </div>
             <PoliticaPrivacidade />
+          </div>
+        </div>
+      )}
+
+      {/* Modal do Termo de Consentimento */}
+      {showConsentTerm && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="card border border-white/20 rounded-lg max-w-4xl max-h-[80vh] overflow-y-auto">
+            <div className="sticky top-0 bg-grafitti-gradient border-b border-white/20 p-4 flex justify-between items-center">
+              <h2 className="text-xl font-bold">Termo de Consentimento</h2>
+              <button 
+                onClick={() => setShowConsentTerm(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+            <TermoConsentimento />
           </div>
         </div>
       )}

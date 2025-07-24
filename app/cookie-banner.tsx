@@ -38,13 +38,21 @@ export default function CookieBanner() {
               <p className="text-gray-300 text-xs sm:text-sm">
                 Utilizamos cookies para melhorar sua experiência. Ao continuar, você aceita nossa{" "}
                 <button
-                    onClick={() => window.dispatchEvent(new CustomEvent('openPrivacyPolicy'))}
-                    className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 transition-colors duration-300"
-                    >
-                    Política de Privacidade
-                    <ExternalLink className="h-3 w-3" />
+                  onClick={() => window.dispatchEvent(new CustomEvent('openPrivacyPolicy'))}
+                  className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 transition-colors duration-300"
+                >
+                  Política de Privacidade
+                  <ExternalLink className="h-3 w-3" />
                 </button>{" "}
-                e LGPD.
+                e{" "}
+                <button
+                  onClick={() => window.dispatchEvent(new CustomEvent('openConsentTerm'))}
+                  className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 transition-colors duration-300"
+                >
+                  Termo de Consentimento
+                  <ExternalLink className="h-3 w-3" />
+                </button>
+                .
               </p>
             </div>
           </div>
