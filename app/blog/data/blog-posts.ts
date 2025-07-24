@@ -19,9 +19,9 @@ export const blogPosts: BlogPost[] = [
     title: "O que o AI Index 2025 da Stanford revela sobre o presente (e os riscos) da Inteligência Artificial",
     excerpt:
       "A nova edição do AI Index Report traz dados que ajudam a entender onde estamos e para onde vamos quando falamos de IA. Avanços impressionantes, mas riscos crescentes.",
-    image: "/blog/ai-index-2025.jpg",
+    image: "/blog/AI-index-2025-stanford.jpg",
     category: "Pesquisa",
-    publishedAt: "25 Jan 2025",
+    publishedAt: "04 Jun 2025",
     readTime: "8 min",
     views: "3.2k",
     author: "Rodolfo Spigai",
@@ -103,9 +103,9 @@ export const blogPosts: BlogPost[] = [
     title: "Preconceito Algorítmico: o viés invisível da IA e como enfrentá-lo agora",
     excerpt:
       "Algoritmos discriminam de maneira silenciosa, muitas vezes imperceptível. Não por intenção, mas por herança. Entenda os riscos e como prevenir.",
-    image: "/blog/preconceito-algoritmico.jpg",
+    image: "/blog/Preconceito-algoritmico.jpg",
     category: "Ética IA",
-    publishedAt: "23 Jan 2025",
+    publishedAt: "23 Mai 2025",
     readTime: "7 min",
     views: "2.8k",
     author: "Rodolfo Spigai",
@@ -185,9 +185,9 @@ export const blogPosts: BlogPost[] = [
     title: "Inteligência Artificial na Saúde: A escrita automática das consultas médicas e o que ganhamos com isso",
     excerpt:
       "Dez centros de saúde em Aragón, Espanha, já adotaram IA para transcrever consultas e elaborar relatórios clínicos. Uma inovação silenciosa, mas de alto impacto.",
-    image: "/blog/ia-saude-consultas.jpg",
+    image: "/blog/IA-na-saude.jpg",
     category: "Saúde Digital",
-    publishedAt: "22 Jan 2025",
+    publishedAt: "23 Jul 2025",
     readTime: "6 min",
     views: "2.1k",
     author: "Rodolfo Spigai",
@@ -263,11 +263,11 @@ export const blogPosts: BlogPost[] = [
     title: "Walmart aposta em agentes inteligentes com IA — e o que isso ensina sobre o futuro do e-commerce",
     excerpt:
       "O Walmart anunciou 'super agentes' de IA para transformar sua operação digital. Meta: metade das vendas do e-commerce até 2030. O que isso significa para o varejo?",
-    image: "/blog/walmart-agentes-ia.jpg",
+    image: "/blog/Walmart-agentes-IA.jpg",
     category: "E-commerce",
-    publishedAt: "20 Jan 2025",
+    publishedAt: "24 Jul 2025",
     readTime: "7 min",
-    views: "1.9k",
+    views: "235",
     author: "Rodolfo Spigai",
     tags: ["Walmart", "Agentes IA", "E-commerce", "Varejo Digital", "Super Agentes"],
     featured: false,
@@ -359,9 +359,9 @@ export const blogPosts: BlogPost[] = [
     title: "40% dos Projetos com IA Serão Cancelados. Como Evitar que o Seu Esteja Nessa Estatística?",
     excerpt:
       "Segundo a Gartner, mais de 40% dos projetos com agentes de IA serão cancelados até 2027. Expectativas irreais, escopos mal definidos e falta de preparo são os culpados.",
-    image: "/blog/projetos-ia-cancelados.jpg",
+    image: "/blog/Projetos-serao-cancelados.jpg",
     category: "Gestão de Projetos",
-    publishedAt: "18 Jan 2025",
+    publishedAt: "10 Jul 2025",
     readTime: "6 min",
     views: "2.7k",
     author: "Rodolfo Spigai",
@@ -471,3 +471,14 @@ export const blogPosts: BlogPost[] = [
     `,
   },
 ]
+
+// Perfil do autor atualizado
+export const authorProfile = {
+  name: "Rodolfo Spigai",
+  bio: "Advogado empresarial com 25 anos de experiência, sócio fundador de três empresas (VAR Business Beyond, Caetano de Paula Advogados e AYTT). Especialista reconhecido em LGPD e Direito Digital. Ex-investidor anjo e mentor ativo em hubs de inovação e incubadoras. Expertise sólida em Compliance e Administração Empresarial, trazendo visão jurídica e estratégica para projetos de tecnologia.",
+  avatar: "/team/rodolfo-spigai.jpg",
+  social: {
+    linkedin: "https://linkedin.com/in/rodolfospigai",
+    twitter: "https://twitter.com/rodolfospigai"
+  }
+}
